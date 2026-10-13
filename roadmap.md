@@ -1,0 +1,14 @@
+# Live result feeds
+- [ ] Add click-to-download attribution, verified app event intake, and private conversion reporting.
+- [ ] Connect and verify real app events — blocked: app developer integration and a real APK are required.
+- [x] Add bilingual WhatsApp support to the installation guide and a floating homepage icon with an explicit placeholder state.
+- [ ] Connect WhatsApp support — blocked: the user will supply a link providing the support number.
+- [x] Add Hindi/English chart labels, FAQs and installation instructions with persistent language selection.
+- [x] Send download calls to action to the APK installation page, preserving placement click tracking.
+- [ ] Enable the actual APK file download — blocked: a real APK URL has not been supplied.
+- [x] Centralize the source domain and configure the supplied public result feeds.
+- [x] Replace sample results and chart links across home and chart pages.
+- [x] Update the result API base to the newly supplied domain, keeping chart paths outside the API prefix.
+- [ ] Verify the actual result schema and live chart flow — blocked: the new /api/public/results endpoint returns HTTP 404; working feed paths are required.
+- [x] Replace the banner photo with the uploaded Sona 777 image and adjust its background.
+- [x] Apply uploaded logos to the header, footer, and favicon.
