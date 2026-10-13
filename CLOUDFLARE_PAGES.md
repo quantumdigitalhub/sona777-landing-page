@@ -4,36 +4,39 @@ Production site: https://sona777-landing.pages.dev. The Pages project is `sona77
 
 The app uses TanStack Start server rendering and Nitro's `cloudflare-pages` preset. Deploy the complete `dist` directory, including `_worker.js`. The worker handles live result requests and conversion callbacks; static hosting alone will not run those features.
 
-## Git deployment
+## Automatic GitHub deployment
 
-Connect the repository to a Cloudflare **Pages** project with these settings:
+Repository: https://github.com/quantumdigitalhub/sona777-landing-page.
 
-| Setting                   | Value                                            |
-| ------------------------- | ------------------------------------------------ |
-| Framework preset          | None                                             |
-| Build command             | `bun install --frozen-lockfile && npm run build` |
-| Build output directory    | `dist`                                           |
-| Root directory            | Repository root                                  |
-| `NODE_VERSION`            | `22.23.2`                                        |
-| `BUN_VERSION`             | `1.4.3`                                          |
-| `SKIP_DEPENDENCY_INSTALL` | `true`                                           |
+[The deployment workflow](./.github/workflows/deploy-pages.yml) runs on pushes to `main` and can be started manually from the repository's Actions tab. It installs from `bun.lock`, runs tests and TypeScript checks, builds `dist`, and uploads it to the existing `sona777-landing` Pages project. Production deployments run one at a time.
 
-The build command installs dependencies from `bun.lock`. `wrangler.jsonc` sets the project name, output directory, compatibility date, and `nodejs_compat`. If the Pages project uses a different name, update `name` in that file before deploying with Wrangler.
+The project was created using Direct Upload. Cloudflare cannot switch it to its built-in Git integration; GitHub Actions deploys into the existing project and preserves `sona777-landing.pages.dev` and `app.sona777.app`.
 
-Set the following environment variables for both Production and Preview before the first build:
+Configure these values under repository Settings → Secrets and variables → Actions:
 
-| Variable                        | Purpose                                                 |
-| ------------------------------- | ------------------------------------------------------- |
-| `VITE_SUPABASE_URL`             | Public Supabase URL embedded in the browser bundle      |
-| `VITE_SUPABASE_PUBLISHABLE_KEY` | Public Supabase key used for CTA and download tracking  |
-| `SUPABASE_URL`                  | Supabase URL available to server requests               |
-| `SUPABASE_PUBLISHABLE_KEY`      | Public key available to server requests                 |
-| `SUPABASE_SERVICE_ROLE_KEY`     | Runtime secret for authenticated conversion storage     |
-| `CONVERSION_WEBHOOK_SECRET`     | Runtime HMAC secret shared with the trusted app backend |
+| Name                            | Type     | Purpose                                                           |
+| ------------------------------- | -------- | ----------------------------------------------------------------- |
+| `CLOUDFLARE_ACCOUNT_ID`         | Variable | Quantum Digital Hub's Cloudflare account                          |
+| `VITE_SUPABASE_URL`             | Variable | Public Supabase URL embedded in the browser bundle                |
+| `VITE_SUPABASE_PUBLISHABLE_KEY` | Variable | Public Supabase key used for CTA and download tracking            |
+| `CLOUDFLARE_API_TOKEN`          | Secret   | API token with Account → Cloudflare Pages → Edit for that account |
 
-Use the existing Supabase project's values. Mark the service-role key and webhook secret as encrypted secrets; never prefix them with `VITE_` or put them in source control. The service-role key and webhook secret are required for conversion callbacks. Live results are fetched server-side from `RESULTS_BASE_URL` without credentials.
+The three repository variables are configured from the existing deployment settings. Create the Cloudflare API token at https://dash.cloudflare.com/profile/api-tokens and store it directly in [GitHub Actions secrets](https://github.com/quantumdigitalhub/sona777-landing-page/settings/secrets/actions). Wrangler's local OAuth login is not used by GitHub Actions. Once the secret is configured, push to `main` or select Actions → Deploy to Cloudflare Pages → Run workflow.
 
-Apply the existing tracking database migrations and policies if they have not already been applied. Configure the app backend's conversion callback URL to `https://<your-site-domain>/api/public/conversions` after publishing; see [CONVERSION_TRACKING.md](./CONVERSION_TRACKING.md) for the callback contract.
+## Runtime configuration
+
+These server values belong in Cloudflare Pages' production environment, rather than in the browser build or workflow:
+
+| Variable                    | Purpose                                                 |
+| --------------------------- | ------------------------------------------------------- |
+| `SUPABASE_URL`              | Supabase URL available to server requests               |
+| `SUPABASE_PUBLISHABLE_KEY`  | Public key available to server requests                 |
+| `SUPABASE_SERVICE_ROLE_KEY` | Runtime secret for authenticated conversion storage     |
+| `CONVERSION_WEBHOOK_SECRET` | Runtime HMAC secret shared with the trusted app backend |
+
+The deployed project already has `SUPABASE_URL` and `SUPABASE_PUBLISHABLE_KEY`. Conversion callbacks still need the service-role key and webhook secret. Store those as encrypted Cloudflare secrets; never prefix them with `VITE_` or commit them. Live results are fetched server-side from `RESULTS_BASE_URL` without credentials.
+
+Apply the existing tracking database migrations and policies if they have not already been applied. See [CONVERSION_TRACKING.md](./CONVERSION_TRACKING.md) for the callback contract.
 
 ## Local Cloudflare preview
 
@@ -62,4 +65,4 @@ The deploy script builds first, then uploads to the Pages project configured in 
 - Open `/download` and verify the Download App button targets the configured CDN file.
 - Confirm unsigned conversion callbacks are rejected; validate signed callbacks with the app backend when its integration is ready.
 
-References: [Nitro Cloudflare Pages preset](https://nitro.build/deploy/providers/cloudflare#cloudflare-pages), [Cloudflare Pages build configuration](https://developers.cloudflare.com/pages/configuration/build-configuration/), and [Pages Wrangler configuration](https://developers.cloudflare.com/pages/functions/wrangler-configuration/).
+References: [Nitro Cloudflare Pages preset](https://nitro.build/deploy/providers/cloudflare#cloudflare-pages), [Cloudflare continuous deployment guide](https://developers.cloudflare.com/pages/how-to/use-direct-upload-with-continuous-integration/), and [Pages Wrangler configuration](https://developers.cloudflare.com/pages/functions/wrangler-configuration/).
