@@ -81,21 +81,56 @@ describe("Live result adapter", () => {
           id: 157,
           market_id: 1,
           market_name: "Starline 10:00 AM",
-          date: "2026-09-21",
+          date: "2026-10-13",
           result: "123-6",
         },
         {
           id: 1,
           market_id: 1,
           market_name: "Starline 10:00 AM",
-          date: "2026-08-13",
+          date: "2026-10-13",
           result: "123-1",
         },
       ],
       "starline",
+      new Date("2026-10-13T00:00:00Z"),
     );
     expect(markets).toHaveLength(1);
     expect(markets[0]?.result).toBe("123-6");
+  });
+  it("shows only today's Starline rounds using India time at midnight", () => {
+    const rows = [
+      { market_id: 1, market_name: "Yesterday", date: "2026-10-12", result: "123-6" },
+      { market_id: 2, market_name: "Today", date: "2026-10-13", result: "234-9" },
+      { market_id: 3, market_name: "Tomorrow", date: "2026-10-14", result: "345-2" },
+    ];
+    expect(
+      normalizeResults(rows, "starline", new Date("2026-10-12T18:29:59Z")).map((row) => row.name),
+    ).toEqual(["Yesterday"]);
+    expect(
+      normalizeResults({ data: rows }, "starline", new Date("2026-10-12T18:30:00Z")).map(
+        (row) => row.name,
+      ),
+    ).toEqual(["Today"]);
+  });
+  it("does not show historical rounds when no Starline results exist today", () => {
+    expect(
+      normalizeResults(
+        [{ market_id: 1, market_name: "Old round", date: "2026-09-21", result: "123-6" }],
+        "starline",
+        new Date("2026-10-13T00:00:00Z"),
+      ),
+    ).toEqual([]);
+  });
+  it("rejects Starline rounds with missing or invalid dates", () => {
+    for (const date of [undefined, "invalid", "2026-02-30"]) {
+      expect(() =>
+        normalizeResults(
+          [{ market_id: 1, market_name: "Round", date, result: "123-6" }],
+          "starline",
+        ),
+      ).toThrow();
+    }
   });
   it("rejects unsafe chart URLs and uses the documented fallback", () => {
     expect(chartUrl("main", "5", "javascript:alert(1)")).toBe(`${providerOrigin}/charts/5`);

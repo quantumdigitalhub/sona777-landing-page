@@ -51,7 +51,12 @@ export function LiveMarkets({ chartsOnly = false }: { chartsOnly?: boolean }) {
               </p>
             ) : markets.length === 0 ? (
               <p className="text-sm text-muted-foreground">
-                {t("No results published yet.", "अभी कोई परिणाम प्रकाशित नहीं हुआ है।")}
+                {category === "starline"
+                  ? t(
+                      "No Starline results published for today.",
+                      "आज के स्टारलाइन परिणाम अभी प्रकाशित नहीं हुए हैं।",
+                    )
+                  : t("No results published yet.", "अभी कोई परिणाम प्रकाशित नहीं हुआ है।")}
               </p>
             ) : (
               <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

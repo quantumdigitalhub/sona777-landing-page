@@ -3,6 +3,7 @@ import { categories, normalizeResults, RESULTS_BASE_URL, type ResultFeed } from 
 
 export const fetchResults = createServerFn({ method: "GET" }).handler(
   async (): Promise<ResultFeed> => {
+    const now = new Date();
     const read = async (path: string): Promise<unknown> => {
       const response = await fetch(new URL(path, RESULTS_BASE_URL), {
         headers: { Accept: "application/json" },
@@ -31,7 +32,7 @@ export const fetchResults = createServerFn({ method: "GET" }).handler(
             const rows =
               grouped[category] ?? grouped[`${category}_results`] ?? grouped[`${category}_markets`];
             if (rows === undefined) throw new Error("Category absent from combined feed");
-            return { category, markets: normalizeResults(rows, category), unavailable: false };
+            return { category, markets: normalizeResults(rows, category, now), unavailable: false };
           } catch {
             /* Fall back to the dedicated category endpoint. */
           }
@@ -39,7 +40,7 @@ export const fetchResults = createServerFn({ method: "GET" }).handler(
         try {
           return {
             category,
-            markets: normalizeResults(await read(`public/results/${category}`), category),
+            markets: normalizeResults(await read(`public/results/${category}`), category, now),
             unavailable: false,
           };
         } catch {
@@ -50,7 +51,7 @@ export const fetchResults = createServerFn({ method: "GET" }).handler(
     return {
       markets: feeds.flatMap((feed) => feed.markets),
       unavailable: feeds.filter((feed) => feed.unavailable).map((feed) => feed.category),
-      fetchedAt: new Date().toISOString(),
+      fetchedAt: now.toISOString(),
     };
   },
 );

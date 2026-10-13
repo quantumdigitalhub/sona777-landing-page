@@ -22,6 +22,7 @@ export type LiveMarket = {
 export type ResultFeed = { markets: LiveMarket[]; unavailable: Category[]; fetchedAt: string };
 
 const recordSchema = z.record(z.unknown());
+const roundDateSchema = z.string().date();
 function text(row: Record<string, unknown>, keys: string[]): string {
   for (const key of keys) {
     const value = row[key];
@@ -56,7 +57,11 @@ export function chartUrl(category: Category, id: string, provided?: string): str
   return `${origin}/${category === "main" ? "charts" : "starline-charts"}/${encodeURIComponent(id)}`;
 }
 
-export function normalizeResults(payload: unknown, category: Category): LiveMarket[] {
+export function normalizeResults(
+  payload: unknown,
+  category: Category,
+  now = new Date(),
+): LiveMarket[] {
   let value = payload;
   // Support a bare array or the common data/results/category envelopes; reject unknown shapes.
   for (let depth = 0; depth < 4 && !Array.isArray(value); depth++) {
@@ -71,8 +76,18 @@ export function normalizeResults(payload: unknown, category: Category): LiveMark
       row["data"];
   }
   if (!Array.isArray(value)) throw new Error("Unexpected results format");
-  const markets = value.map((item): LiveMarket => {
-    const row = recordSchema.parse(item);
+  const rows = value.map((item) => recordSchema.parse(item));
+  const today = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Kolkata",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(now);
+  const currentRows =
+    category === "starline"
+      ? rows.filter((row) => roundDateSchema.parse(row["date"]) === today)
+      : rows;
+  const markets = currentRows.map((row): LiveMarket => {
     const nested = recordSchema.safeParse(row["market"] ?? row["starline_market"]);
     const info = nested.success ? { ...nested.data, ...row } : row;
     const id = text(
