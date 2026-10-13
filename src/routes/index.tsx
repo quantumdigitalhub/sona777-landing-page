@@ -45,7 +45,6 @@ function Index() {
           <div className="relative mt-3">
             <DownloadBtn big />
           </div>
-          <p className="mt-3 text-sm text-accent-foreground/80">Android APK · 8 MB · Free · Live results & charts</p>
           <div className="mt-6 grid w-full max-w-md grid-cols-3 gap-4 border-t border-accent-foreground/20 pt-5">
             {[["5L+", "Downloads"], ["30+", "Markets"], ["5 min", "Withdrawal"]].map(([a, b]) => (
               <div key={b}>
