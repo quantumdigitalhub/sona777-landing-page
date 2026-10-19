@@ -10,10 +10,10 @@ import { getDownloadClickId, trackApkDownload } from "@/lib/track";
 
 export const Route = createFileRoute("/download")({
   head: () => ({ meta: [
-    { title: "Install Sona 777 APK on Android | Hindi & English Guide" },
-    { name: "description", content: "Step-by-step Sona 777 APK installation instructions for Android in Hindi and English, with download and installation help." },
-    { property: "og:title", content: "Sona 777 Android Installation Guide" },
-    { property: "og:description", content: "Download and install the Sona 777 APK with Hindi and English instructions." },
+    { title: "Install Raja567 APK on Android | Hindi & English Guide" },
+    { name: "description", content: "Step-by-step Raja567 APK installation instructions for Android in Hindi and English, with download and installation help." },
+    { property: "og:title", content: "Raja567 Android Installation Guide" },
+    { property: "og:description", content: "Download and install the Raja567 APK with Hindi and English instructions." },
     { property: "og:type", content: "website" },
     { name: "twitter:card", content: "summary" },
   ] }),
@@ -35,7 +35,7 @@ function DownloadPage() {
   return <div className="min-h-screen"><SiteHeader /><main className="mx-auto max-w-3xl px-4 py-10">
     <Link to="/" className="text-sm font-semibold text-primary">{t("← Back to home", "← होम पर वापस जाएँ")}</Link>
     <p className="mt-8 text-sm font-semibold text-primary">{t("Android installation", "Android इंस्टॉलेशन")}</p>
-    <h1 className="mt-2 font-display text-3xl">{t("Install Sona 777", "Sona 777 इंस्टॉल करें")}</h1>
+    <h1 className="mt-2 font-display text-3xl">{t("Install Raja567", "Raja567 इंस्टॉल करें")}</h1>
     <p className="mt-3 text-muted-foreground">{t("Follow these steps to install the APK on your Android phone. APK files do not work on iPhone.", "अपने Android फ़ोन पर APK इंस्टॉल करने के लिए नीचे दिए चरणों का पालन करें। APK फ़ाइलें iPhone पर नहीं चलतीं।")}</p>
     <div className="my-6">
       {ready ? <Button asChild size="lg" className="shadow-none"><a href={APK_URL} onClick={(event) => { event.preventDefault(); void Promise.race([trackApkDownload().catch(() => undefined), new Promise(resolve => setTimeout(resolve, 1500))]).finally(() => { window.location.assign(APK_URL); }); }}><Download />{t("Download App", "ऐप डाउनलोड करें")}</a></Button> : <><Button size="lg" disabled className="shadow-none"><Download />{t("Download not available yet", "डाउनलोड अभी उपलब्ध नहीं है")}</Button><p role="status" className="mt-3 text-sm text-muted-foreground">{t("The download file has not been added yet. Installation instructions are available below.", "डाउनलोड फ़ाइल अभी जोड़ी नहीं गई है। इंस्टॉल करने के निर्देश नीचे उपलब्ध हैं।")}</p></>}
@@ -43,7 +43,7 @@ function DownloadPage() {
     </div>
     <h2 className="mt-10 text-xl font-bold">{t("How to install", "इंस्टॉल कैसे करें")}</h2>
     <ol className="mt-3 divide-y">{steps.map(({ icon: Icon, title, body }, i) => <li key={i} className="flex gap-4 py-6"><span className="flex size-9 shrink-0 items-center justify-center rounded-sm bg-accent font-bold text-primary">{i + 1}</span><div className="min-w-0"><h3 className="flex items-center gap-2 font-bold"><Icon className="size-4 shrink-0 text-primary" />{title}</h3><p className="mt-2 text-sm leading-relaxed text-muted-foreground">{body}</p></div></li>)}</ol>
-    <section className="mt-8 border-t pt-6"><h2 className="text-xl font-bold">{t("Installation help", "इंस्टॉल करने में मदद")}</h2><div className="my-4"><WhatsAppSupport /><p className="mt-2 text-sm text-muted-foreground">{t("WhatsApp support will be available once the contact is added.", "संपर्क जुड़ने के बाद WhatsApp सहायता उपलब्ध होगी।")}</p></div>{[
+    <section className="mt-8 border-t pt-6"><h2 className="text-xl font-bold">{t("Installation help", "इंस्टॉल करने में मदद")}</h2><div className="my-4"><WhatsAppSupport /><p className="mt-2 text-sm text-muted-foreground">{t("Contact Raja567 on WhatsApp for installation help.", "इंस्टॉल करने में मदद के लिए Raja567 से WhatsApp पर संपर्क करें।")}</p></div>{[
       [t("Can’t find the file?", "फ़ाइल नहीं मिल रही?"), t("Check Downloads in your browser or Files app. If the download is incomplete, retry when your connection is stable.", "ब्राउज़र या Files ऐप में Downloads देखें। डाउनलोड अधूरा हो तो स्थिर इंटरनेट कनेक्शन पर दोबारा कोशिश करें।")],
       [t("‘App not installed’ message?", "‘App not installed’ दिख रहा है?"), t("Check free storage and download the complete file again. An existing app version can also conflict. Do not uninstall it unless your account and data are safely recoverable.", "खाली स्टोरेज जाँचें और पूरी फ़ाइल दोबारा डाउनलोड करें। पहले से मौजूद ऐप संस्करण भी समस्या बना सकता है। अकाउंट और डेटा सुरक्षित रूप से वापस मिल सकें, तभी पुराना ऐप हटाएँ।")],
     ].map(([q, a]) => <details key={q} className="border-b py-4"><summary className="cursor-pointer font-semibold">{q}</summary><p className="mt-2 text-sm text-muted-foreground">{a}</p></details>)}</section>

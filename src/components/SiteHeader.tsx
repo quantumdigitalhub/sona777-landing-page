@@ -4,8 +4,8 @@ import { useLanguage } from "@/lib/language";
 import { trackDownload } from "@/lib/track";
 import { Button } from "@/components/ui/button";
 import { Download, Menu, X } from "lucide-react";
-import horizontalLogo from "@/assets/sona-horizontal.png";
-import verticalLogo from "@/assets/sona-vertical.png";
+import horizontalLogo from "@/assets/raja567-horizontal.png";
+import verticalLogo from "@/assets/raja567-stacked.png";
 
 export function DownloadBtn({ big = false }: { big?: boolean }) {
   const { t } = useLanguage();
@@ -32,7 +32,7 @@ export function SiteHeader() {
   const { language, setLanguage, t } = useLanguage();
   const label = (value: string) => value === "Market Charts" ? t(value, "मार्केट चार्ट") : value === "Today's Results" ? t(value, "आज के परिणाम") : t(value, "मटका ब्लॉग");
   return (
-    <header className="sticky top-0 z-20 border-b bg-background">
+    <header className="sticky top-0 z-20 border-b border-gold/30 bg-background/95 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-3 py-3 sm:px-4">
         <div className="flex min-w-0 items-center gap-2 sm:gap-3">
           <Button
@@ -45,8 +45,8 @@ export function SiteHeader() {
           >
             {open ? <X /> : <Menu />}
           </Button>
-          <Link to="/" aria-label="Sona 777 home" className="block min-w-0 shrink">
-            <img src={horizontalLogo} alt="Sona 777" width={1686} height={354} className="h-auto w-32 max-w-full sm:w-44" />
+          <Link to="/" aria-label="Raja567 home" className="block min-w-0 shrink">
+            <img src={horizontalLogo} alt="Raja567" width={2172} height={724} className="h-auto w-32 max-w-full sm:w-44" />
           </Link>
         </div>
         <nav className="hidden gap-6 text-sm font-semibold md:flex">
@@ -82,11 +82,11 @@ export function SiteFooter() {
   const onDownloadPage = useLocation().pathname === "/download";
   return (
     <>
-      <footer className="border-t bg-background px-4 py-8 text-center text-xs text-muted-foreground">
-        <Link to="/" aria-label="Sona 777 home" className="mx-auto mb-5 block w-28">
-          <img src={verticalLogo} alt="Sona 777" width={1187} height={1119} className="h-auto w-full" />
+      <footer className="border-t border-gold/30 bg-muted px-4 py-10 text-center text-xs text-muted-foreground">
+        <Link to="/" aria-label="Raja567 home" className="mx-auto mb-5 block w-28">
+          <img src={verticalLogo} alt="Raja567" width={1236} height={1273} loading="lazy" className="h-auto w-full" />
         </Link>
-        <p>© 2026 Sona 777. For 18+ only. Play responsibly. This game involves financial risk.</p>
+        <p>© 2026 Raja567. For 18+ only..</p>
       </footer>
       {!onDownloadPage && <><div className="h-16 md:hidden" />
       <div className="fixed inset-x-0 bottom-0 z-30 border-t bg-background p-3 md:hidden">

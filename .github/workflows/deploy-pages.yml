@@ -1,20 +1,20 @@
-name: Deploy to Cloudflare Pages
+name: Deploy Raja 567 to Cloudflare Pages
 
 on:
   push:
-    branches: [main]
+    branches: [raja-567]
   workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: cloudflare-pages-production
+  group: cloudflare-pages-raja567-production
   cancel-in-progress: false
 
 jobs:
   deploy:
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/raja-567'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -33,12 +33,9 @@ jobs:
           npx tsc --noEmit
       - name: Build
         env:
-          VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
-          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ vars.VITE_SUPABASE_PUBLISHABLE_KEY }}
-        run: |
-          test -n "$VITE_SUPABASE_URL" || { echo "Missing repository variable VITE_SUPABASE_URL"; exit 1; }
-          test -n "$VITE_SUPABASE_PUBLISHABLE_KEY" || { echo "Missing repository variable VITE_SUPABASE_PUBLISHABLE_KEY"; exit 1; }
-          npm run build
+          VITE_SUPABASE_URL: ${{ vars.RAJA567_VITE_SUPABASE_URL }}
+          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ vars.RAJA567_VITE_SUPABASE_PUBLISHABLE_KEY }}
+        run: npm run build
       - name: Deploy production
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
@@ -46,4 +43,4 @@ jobs:
         run: |
           test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "Missing repository variable CLOUDFLARE_ACCOUNT_ID"; exit 1; }
           test -n "$CLOUDFLARE_API_TOKEN" || { echo "Missing repository secret CLOUDFLARE_API_TOKEN"; exit 1; }
-          npx wrangler pages deploy dist --project-name sona777-landing --branch main --commit-hash "$GITHUB_SHA"
+          npx wrangler pages deploy dist --project-name raja567-landing --branch raja-567 --commit-hash "$GITHUB_SHA"

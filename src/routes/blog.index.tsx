@@ -5,9 +5,9 @@ import { posts } from "@/lib/data";
 export const Route = createFileRoute("/blog/")({
   head: () => ({
     meta: [
-      { title: "Matka Blog – Matka History, Charts & Guides | Sona 777" },
+      { title: "Matka Blog – Matka History, Charts & Guides | Raja567" },
       { name: "description", content: "Read about matka history, Kalyan and Main Bazar markets, and how to read jodi and panel charts." },
-      { property: "og:title", content: "Matka Blog – Sona 777" },
+      { property: "og:title", content: "Matka Blog – Raja567" },
       { property: "og:description", content: "Matka history, market guides and chart tips." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },

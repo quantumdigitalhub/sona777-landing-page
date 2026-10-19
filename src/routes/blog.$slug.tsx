@@ -13,7 +13,7 @@ export const Route = createFileRoute("/blog/$slug")({
     const { post } = loaderData;
     return {
       meta: [
-        { title: `${post.title} | Sona 777` },
+        { title: `${post.title} | Raja567` },
         { name: "description", content: post.description },
         { property: "og:title", content: post.title },
         { property: "og:description", content: post.description },

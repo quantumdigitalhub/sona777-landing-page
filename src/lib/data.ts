@@ -1,5 +1,5 @@
-export const APK_URL = "https://cdn.kc777.bet/sona777/sona777-v1.apk";
-export const WHATSAPP_SUPPORT_URL = ""; // Pending the user's support-number source link.
+export const APK_URL = "";
+export const WHATSAPP_SUPPORT_URL = "https://wa.me/917410919134";
 
 export type Post = { slug: string; title: string; description: string; date: string; body: string[] };
 
@@ -12,7 +12,7 @@ export const posts: Post[] = [
     body: [
       "Kalyan Matka is one of the oldest and most followed matka markets in India. It began in the 1960s and quickly became the reference market for players across the country.",
       "Results are declared twice a day: an open result and a close result. Together they form the jodi, which players track in the Kalyan jodi chart.",
-      "Reading old Kalyan charts helps players spot repeating jodis and panels. You can view the full Kalyan chart in the Sona 777 app.",
+      "Reading old Kalyan charts helps players spot repeating jodis and panels. You can view the full Kalyan chart in the Raja567 app.",
     ],
   },
   {
@@ -23,7 +23,7 @@ export const posts: Post[] = [
     body: [
       "A jodi chart lists the two-digit result of each day for a market, arranged week by week. A panel chart shows the three-digit pannas behind each digit.",
       "Double jodis (like 22 or 77) are highlighted in most charts because many players track them.",
-      "Sona 777 shows jodi and panel charts for 30+ markets, updated live after every result.",
+      "Raja567 shows jodi and panel charts for 30+ markets, updated live after every result.",
     ],
   },
   {
@@ -34,7 +34,7 @@ export const posts: Post[] = [
     body: [
       "Main Bazar is a popular night market. It opens at 09:40 PM and closes at 12:05 AM.",
       "Players follow the Main Bazar chart to study past jodis before playing.",
-      "Get instant Main Bazar result alerts by downloading the Sona 777 app.",
+      "Get instant Main Bazar result alerts by downloading the Raja567 app.",
     ],
   },
 ];

@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 // Change this one value when the result provider moves domains.
-export const RESULTS_BASE_URL = "https://sona777.app/api/";
+export const RESULTS_BASE_URL = "https://raja567matka.com/api/";
 export const categories = ["main", "starline", "jackpot"] as const;
 export type Category = (typeof categories)[number];
 export const categoryLabels: Record<Category, string> = {

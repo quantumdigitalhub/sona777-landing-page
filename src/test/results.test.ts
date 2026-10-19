@@ -5,10 +5,10 @@ const providerOrigin = new URL(RESULTS_BASE_URL).origin;
 describe("Live result adapter", () => {
   it("resolves feeds under the API base without duplicating api", () => {
     expect(new URL("public/results", RESULTS_BASE_URL).href).toBe(
-      "https://sona777.app/api/public/results",
+      "https://raja567matka.com/api/public/results",
     );
     expect(new URL("public/results/main", RESULTS_BASE_URL).href).toBe(
-      "https://sona777.app/api/public/results/main",
+      "https://raja567matka.com/api/public/results/main",
     );
   });
   it("reads main results and preserves string digits", () => {
@@ -45,7 +45,7 @@ describe("Live result adapter", () => {
             result: "100-13-670",
             open_time: "10:00 AM",
             close_time: "11:00 AM",
-            chart_url: "http://sona777.app/charts/28",
+            chart_url: "http://raja567matka.com/charts/28",
           },
         ],
       },

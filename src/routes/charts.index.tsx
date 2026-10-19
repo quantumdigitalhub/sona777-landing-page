@@ -10,9 +10,9 @@ export const Route = createFileRoute("/charts/")({
   notFoundComponent: () => <p className="p-8 text-center">Page not found.</p>,
   head: () => ({
     meta: [
-      { title: "Matka Charts – Kalyan, Milan, Main Bazar Jodi & Panel | Sona 777" },
-      { name: "description", content: "All matka market charts in one list. View Kalyan, Milan Day, Main Bazar, Rajdhani and Sona jodi and panel charts." },
-      { property: "og:title", content: "Matka Market Charts – Sona 777" },
+      { title: "Matka Charts – Kalyan, Milan, Main Bazar Jodi & Panel | Raja567" },
+      { name: "description", content: "All matka market charts in one list. View Kalyan, Milan Day, Main Bazar, Rajdhani and other jodi and panel charts." },
+      { property: "og:title", content: "Matka Market Charts – Raja567" },
       { property: "og:description", content: "Jodi and panel charts for all popular matka markets." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },

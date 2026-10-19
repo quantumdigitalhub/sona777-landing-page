@@ -8,8 +8,8 @@ export const Route = createFileRoute("/charts/$slug")({
   loader: ({ context }) => context.queryClient.ensureQueryData(resultsQueryOptions),
   head: ({ params }) => {
     const name = params.slug.replace(/-/g, " ");
-    const title = `${name} Market Chart | Sona 777`;
-    const description = `View the chart and latest published results for ${name} on Sona 777.`;
+    const title = `${name} Market Chart | Raja567`;
+    const description = `View the chart and latest published results for ${name} on Raja567.`;
     return {
       meta: [
         { title },

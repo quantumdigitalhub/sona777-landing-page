@@ -1,4 +1,4 @@
-# Sona 777 conversion tracking — developer handoff
+# Raja567 conversion tracking — developer handoff
 
 ## What is measured
 
@@ -18,7 +18,7 @@
 
 ## Callback contract
 
-POST to `https://sona777-landing.pages.dev/api/public/conversions`. The deployed site still needs `SUPABASE_SERVICE_ROLE_KEY` and `CONVERSION_WEBHOOK_SECRET` configured before callbacks can be accepted. No browser CORS access is provided: this is backend-to-backend.
+POST to `/api/public/conversions` on Raja567's deployed production domain. Use the address assigned to the `raja567-landing` Cloudflare Pages project once it is created. Configure `SUPABASE_SERVICE_ROLE_KEY` and `CONVERSION_WEBHOOK_SECRET` in that project's production environment before callbacks can be accepted. No browser CORS access is provided: this is backend-to-backend.
 
 Headers:
 - `Content-Type: application/json`

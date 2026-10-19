@@ -1,6 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
-import women from "@/assets/sona_header.png";
-import { Link } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import stackedLogo from "@/assets/raja567-stacked.png";
 import { SiteHeader, SiteFooter, DownloadBtn } from "@/components/SiteHeader";
 import { posts } from "@/lib/data";
 import { useLanguage } from "@/lib/language";
@@ -8,7 +7,8 @@ import { Button } from "@/components/ui/button";
 import { LiveMarkets } from "@/components/LiveMarkets";
 import { WhatsAppSupport } from "@/components/WhatsAppSupport";
 import { resultsQueryOptions } from "@/lib/results-query";
-import { ShieldCheck, Wallet, Headphones, CircleCheck, Trophy, ArrowUpRight } from "lucide-react";
+import { trackDownload } from "@/lib/track";
+import { ShieldCheck, Wallet, Headphones, CircleCheck, Crown, Trophy, ArrowUpRight } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   loader: ({ context }) => context.queryClient.ensureQueryData(resultsQueryOptions),
@@ -16,10 +16,10 @@ export const Route = createFileRoute("/")({
   notFoundComponent: () => <p className="p-8 text-center">Page not found.</p>,
   head: () => ({
     meta: [
-      { title: "Sona 777 Matka – Download App, Live Results & Charts" },
-      { name: "description", content: "Download the Sona 777 Matka app. Live market results, Jodi & Panel charts, fast withdrawals." },
-      { property: "og:title", content: "Sona 777 Matka – Download the App" },
-      { property: "og:description", content: "Live matka results, charts and instant play. Download Sona 777 now." },
+      { title: "Raja567 Matka – Download App, Live Results & Charts" },
+      { name: "description", content: "Download the Raja567 Matka app. Live market results, Jodi & Panel charts, fast withdrawals." },
+      { property: "og:title", content: "Raja567 Matka – Download the App" },
+      { property: "og:description", content: "Live matka results, charts and instant play. Download Raja567 now." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],
@@ -31,27 +31,29 @@ function Index() {
   const { t } = useLanguage();
   return (
     <div className="min-h-screen">
-      <div className="bg-accent py-2 text-center text-sm font-semibold text-accent-foreground">
-        New users get ₹100 welcome bonus on first deposit
+      <div className="flex items-center justify-center gap-2 bg-secondary px-4 py-2.5 text-center text-xs font-semibold tracking-wide text-secondary-foreground sm:text-sm">
+        <Crown aria-hidden className="size-4 text-gold" />
+        {t("Welcome to Raja567 · Live results & market charts", "Raja567 में आपका स्वागत है · लाइव परिणाम और मार्केट चार्ट")}
       </div>
 
       <SiteHeader />
 
       {/* Hero */}
-      <section className="bg-accent text-accent-foreground">
-        <div className="mx-auto flex max-w-6xl flex-col items-center px-4 pt-5 pb-7 text-center">
-          <h1 className="sr-only">Sona 777 Matka App</h1>
-          <img src={women} alt="Woman in a red sari holding the Sona 777 gold pot" width={376} height={432} className="mt-3 h-auto w-72 max-w-full md:w-80" />
-          <div className="relative mt-3">
-            <DownloadBtn big />
+      <section className="overflow-hidden border-b border-gold/30 bg-linear-to-br from-background via-muted to-accent/50">
+        <div className="mx-auto grid max-w-6xl items-center gap-8 px-5 py-12 text-center md:grid-cols-2 md:gap-12 md:py-20 md:text-left">
+          <div>
+            <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-gold/40 bg-card/70 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-primary"><Crown aria-hidden className="size-4" />{t("The Raja567 experience", "Raja567 का अनुभव")}</p>
+            <h1 className="font-display text-5xl leading-[1.08] font-bold tracking-tight text-primary sm:text-6xl lg:text-7xl">{t("Your markets.", "आपके मार्केट।")}<br /><span className="text-foreground">{t("A royal experience.", "एक शाही अनुभव।")}</span></h1>
+            <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-muted-foreground md:mx-0">{t("Discover live matka results, explore Jodi & Panel charts, and find your next market. All in one place with Raja567.", "Raja567 पर लाइव मटका परिणाम देखें, जोड़ी और पैनल चार्ट खोजें और अपने पसंदीदा मार्केट से जुड़े रहें।")}</p>
+            <div className="mt-7 flex flex-wrap items-center justify-center gap-5 md:justify-start">
+              <DownloadBtn big />
+              <a href="#results" className="inline-flex items-center gap-1 text-sm font-bold text-primary underline underline-offset-4">{t("Explore live results", "लाइव परिणाम देखें")}<ArrowUpRight aria-hidden className="size-4" /></a>
+            </div>
+            <p className="mt-4 text-xs text-muted-foreground">{t("For Android · 18+ only ", "Android के लिए · केवल 18+")}</p>
           </div>
-          <div className="mt-6 grid w-full max-w-md grid-cols-3 gap-4 border-t border-accent-foreground/20 pt-5">
-            {[["5L+", "Downloads"], ["30+", "Markets"], ["5 min", "Withdrawal"]].map(([a, b]) => (
-              <div key={b}>
-                <div className="font-display text-2xl text-primary">{a}</div>
-                <div className="text-xs text-accent-foreground/70">{b}</div>
-              </div>
-            ))}
+          <div className="relative mx-auto flex aspect-square w-full max-w-sm items-center justify-center rounded-full border border-gold/30 bg-background/60 p-8 sm:max-w-md sm:p-12">
+            <div aria-hidden className="absolute inset-3 rounded-full border border-gold/15" />
+            <img src={stackedLogo} alt="Raja567 burgundy crown with a gold ring" width={1236} height={1273} fetchPriority="high" className="relative h-auto w-full" />
           </div>
         </div>
       </section>
@@ -59,7 +61,7 @@ function Index() {
       {/* Trust */}
       <section className="border-b">
         <div className="mx-auto grid max-w-6xl grid-cols-2 gap-4 px-4 py-6 text-center text-sm font-semibold md:grid-cols-4">
-          {[[ShieldCheck, "100% Secure"], [Wallet, "UPI & Bank Withdrawal"], [Headphones, "24×7 WhatsApp Support"], [CircleCheck, "Lowest Min. Bet ₹10"]].map(([Icon, text]) => {
+          {[[Headphones, "24×7 WhatsApp Support"], [CircleCheck, "Free and Secure"]].map(([Icon, text]) => {
             const TrustIcon = Icon as typeof ShieldCheck;
             return <div key={String(text)} className="flex items-center justify-center gap-2"><TrustIcon className="size-5 shrink-0 text-primary" /><span>{String(text)}</span></div>;
           })}
@@ -92,7 +94,7 @@ function Index() {
         <h2 className="mb-8 text-center font-display text-3xl">{t("Start Playing in 3 Steps", "3 चरणों में शुरू करें")}</h2>
         <div className="grid gap-6 md:grid-cols-3">
           {[
-            [t("Download", "डाउनलोड करें"), t("Tap Download and install the Sona 777 APK on your Android phone.", "डाउनलोड पर टैप करें और अपने Android फ़ोन पर Sona 777 APK इंस्टॉल करें।")],
+            [t("Download", "डाउनलोड करें"), t("Tap Download and install the Raja567 APK on your Android phone.", "डाउनलोड पर टैप करें और अपने Android फ़ोन पर Raja567 APK इंस्टॉल करें।")],
             [t("Register", "रजिस्टर करें"), t("Sign up with your mobile number in under 30 seconds.", "अपने मोबाइल नंबर से 30 सेकंड से कम समय में रजिस्टर करें।")],
             [t("Play & Win", "खेलें और जीतें"), t("Add funds via UPI, pick your market and withdraw winnings instantly.", "UPI से पैसे जोड़ें, अपना मार्केट चुनें और जीती हुई रकम निकालें।")],
           ].map(([t, d], i) => (
@@ -126,7 +128,7 @@ function Index() {
       <section className="mx-auto max-w-3xl px-4 py-14">
         <h2 className="mb-6 font-display text-3xl">{t("FAQ", "अक्सर पूछे जाने वाले सवाल")}</h2>
         {[
-          [t("Is the app free?", "क्या ऐप मुफ़्त है?"), t("Yes, Sona 777 is free to download and register.", "हाँ, Sona 777 डाउनलोड करना और रजिस्टर करना मुफ़्त है।")],
+          [t("Is the app free?", "क्या ऐप मुफ़्त है?"), t("Yes, Raja567 is free to download and register.", "हाँ, Raja567 डाउनलोड करना और रजिस्टर करना मुफ़्त है।")],
           [t("How fast are withdrawals?", "रकम कितनी जल्दी मिलती है?"), t("Most withdrawals reach your UPI or bank within 5–15 minutes.", "अधिकतर निकासी 5–15 मिनट में आपके UPI या बैंक में पहुँच जाती है।")],
           [t("Is it available on iPhone?", "क्या यह iPhone पर उपलब्ध है?"), t("Currently the app is available for Android. iOS is coming soon.", "अभी ऐप Android के लिए उपलब्ध है। iOS जल्द आने वाला है।")],
           [t("How do I install the APK?", "APK कैसे इंस्टॉल करें?"), t("Open the download page for step-by-step Android installation instructions. Keep Play Protect enabled.", "Android पर इंस्टॉल करने के चरणों के लिए डाउनलोड पेज खोलें। Play Protect चालू रखें।")],
@@ -158,8 +160,8 @@ function Index() {
       <section id="download" className="bg-primary text-primary-foreground">
         <div className="mx-auto max-w-6xl px-4 py-14 text-center">
           <h2 className="font-display text-3xl md:text-4xl">Ready to play? Get the app now.</h2>
-          <p className="mt-3 opacity-90">Join 5 lakh+ players. ₹100 bonus on first deposit.</p>
-          <Button asChild className="mt-6 h-auto bg-accent px-8 py-4 text-lg font-bold text-accent-foreground shadow-none hover:bg-accent/90"><Link to="/download">{t("↓ Download Sona 777", "↓ Sona 777 डाउनलोड करें")}</Link></Button>
+          <p className="mt-3 opacity-90">{t("Your results, charts and markets. The Raja567 experience.", "आपके परिणाम, चार्ट और मार्केट। Raja567 का अनुभव।")}</p>
+          <Button asChild className="mt-6 h-auto bg-accent px-8 py-4 text-lg font-bold text-accent-foreground shadow-none hover:bg-accent/90"><Link to="/download" onClick={() => trackDownload("other")}>{t("↓ Download Raja567", "↓ Raja567 डाउनलोड करें")}</Link></Button>
         </div>
       </section>
 

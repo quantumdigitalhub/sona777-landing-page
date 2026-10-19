@@ -27,7 +27,7 @@ export function MarketCard({
   );
   if (chartsOnly)
     return (
-      <div className="flex flex-wrap items-center justify-between gap-3 rounded-md border bg-card p-4">
+      <div className="flex flex-wrap items-center justify-between gap-3 rounded-md border border-gold/25 bg-card p-4">
         <span className="font-bold">{market.name}</span>
         {chartButton}
       </div>
@@ -37,8 +37,8 @@ export function MarketCard({
       ? t("Pending", "प्रतीक्षा में")
       : t("Result", "परिणाम");
   return (
-    <article className="overflow-hidden rounded-md border bg-card">
-      <div className="flex items-center justify-between gap-2 border-b px-5 py-4">
+    <article className="overflow-hidden rounded-md border border-gold/25 bg-card">
+      <div className="flex items-center justify-between gap-2 border-b bg-muted/50 px-5 py-4">
         <h3 className="font-bold uppercase">{market.name}</h3>
         <span className="shrink-0 rounded-sm bg-muted px-2 py-1 text-xs font-semibold text-muted-foreground">
           {status}
