@@ -77,7 +77,7 @@ npm run deploy:pages
 
 The deploy script builds first, then explicitly uploads to `raja567-landing` with production branch `raja-567`. Run it only from this branch after configuring the project's environment variables and secrets. For local builds, set Raja's `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` in the ignored `.env`; local environment files do not change when switching Git branches. The script does not create or migrate the Supabase database.
 
-The page uses Raja567 branding. `APK_URL` in `src/lib/data.ts` remains empty until Raja's APK is supplied; its control shows an explicit unavailable state. `WHATSAPP_SUPPORT_URL` connects to +91 7410919134. Sona's Meta Pixel has been removed. Configure Raja's own pixel when its ID is supplied. Raja's result provider is `https://raja567matka.com/api/`, centralized in `RESULTS_BASE_URL`.
+The page uses Raja567 branding. `APK_URL` in `src/lib/data.ts` is `https://cdn.kc777.bet/raja567.apk`; homepage download controls route through `/download` for installation guidance and attribution. `WHATSAPP_SUPPORT_URL` connects to +91 7410919134. Sona's Meta Pixel has been removed. Configure Raja's own pixel when its ID is supplied. Raja's result provider is `https://raja567matka.com/api/`, centralized in `RESULTS_BASE_URL`.
 
 ## Verify after deployment
 
