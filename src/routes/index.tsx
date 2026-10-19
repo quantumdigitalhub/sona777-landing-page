@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { LiveMarkets } from "@/components/LiveMarkets";
 import { WhatsAppSupport } from "@/components/WhatsAppSupport";
 import { resultsQueryOptions } from "@/lib/results-query";
+import { trackDownload } from "@/lib/track";
 import { ShieldCheck, Wallet, Headphones, CircleCheck, Trophy, ArrowUpRight } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -32,7 +33,7 @@ function Index() {
   return (
     <div className="min-h-screen">
       <div className="bg-accent py-2 text-center text-sm font-semibold text-accent-foreground">
-        New users get ₹100 welcome bonus on first deposit
+        {t("Live results & market charts — stay updated with Sona 777", "लाइव परिणाम और मार्केट चार्ट — Sona 777 के साथ अपडेट रहें")}
       </div>
 
       <SiteHeader />
@@ -158,8 +159,8 @@ function Index() {
       <section id="download" className="bg-primary text-primary-foreground">
         <div className="mx-auto max-w-6xl px-4 py-14 text-center">
           <h2 className="font-display text-3xl md:text-4xl">Ready to play? Get the app now.</h2>
-          <p className="mt-3 opacity-90">Join 5 lakh+ players. ₹100 bonus on first deposit.</p>
-          <Button asChild className="mt-6 h-auto bg-accent px-8 py-4 text-lg font-bold text-accent-foreground shadow-none hover:bg-accent/90"><Link to="/download">{t("↓ Download Sona 777", "↓ Sona 777 डाउनलोड करें")}</Link></Button>
+          <p className="mt-3 opacity-90">{t("Live results and market charts, all in one app.", "लाइव परिणाम और मार्केट चार्ट, सब एक ही ऐप में।")}</p>
+          <Button asChild className="mt-6 h-auto bg-accent px-8 py-4 text-lg font-bold text-accent-foreground shadow-none hover:bg-accent/90"><Link to="/download" onClick={() => trackDownload("other")}>{t("↓ Download Sona 777", "↓ Sona 777 डाउनलोड करें")}</Link></Button>
         </div>
       </section>
 
