@@ -1,6 +1,8 @@
-# Raja567 app download variant
+# Megha 777 app download variant
 
-Branch: `variant/non-gambling`. An Android app download landing page with Raja567 branding, English/Hindi installation instructions, and the supplied Raja567 app preview image. Live results, charts and gambling articles are removed. The original site is preserved on `raja-567`.
+Branch: `variant/megha777-download`. A mobile-friendly Android app download page with original Megha 777 vector logos, English/Hindi installation guidance, and Play Now buttons. The app download is configured in `src/lib/data.ts`.
+
+Production: https://megha777-download.pages.dev. Sona777 and Raja567 are maintained on their own branches and deployment projects.
 
 ## Development
 

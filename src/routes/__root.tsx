@@ -79,19 +79,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
-      { title: "Raja567" },
+      { title: "Megha 777" },
       {
         name: "description",
         content:
-          "Download Raja567 for Android with installation instructions in English and Hindi.",
+          "Download Megha 777 for Android with installation instructions in English and Hindi.",
       },
-      { name: "author", content: "Raja567" },
-      { name: "theme-color", content: "#960024" },
-      { property: "og:title", content: "Raja567" },
+      { name: "author", content: "Megha 777" },
+      { name: "theme-color", content: "#5b36d9" },
+      { property: "og:title", content: "Megha 777" },
       {
         property: "og:description",
         content:
-          "Download Raja567 for Android with installation instructions in English and Hindi.",
+          "Download Megha 777 for Android with installation instructions in English and Hindi.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -120,31 +120,8 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1543631320841240');
-fbq('track', 'PageView');`,
-          }}
-        />
       </head>
       <body>
-        <noscript>
-          <img
-            height="1"
-            width="1"
-            style={{ display: "none" }}
-            src="https://www.facebook.com/tr?id=1543631320841240&ev=PageView&noscript=1"
-            alt=""
-          />
-        </noscript>
         {children}
         <Scripts />
       </body>

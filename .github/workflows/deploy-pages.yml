@@ -1,20 +1,20 @@
-name: Deploy Raja567 App Download to Cloudflare Pages
+name: Deploy Megha 777 App Download to Cloudflare Pages
 
 on:
   push:
-    branches: [variant/non-gambling]
+    branches: [variant/megha777-download]
   workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: cloudflare-pages-raja567-download
+  group: cloudflare-pages-megha777-download
   cancel-in-progress: false
 
 jobs:
   deploy:
-    if: github.ref == 'refs/heads/variant/non-gambling'
+    if: github.ref == 'refs/heads/variant/megha777-download'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -33,8 +33,8 @@ jobs:
           npx tsc --noEmit
       - name: Build
         env:
-          VITE_SUPABASE_URL: ${{ vars.RAJA567_VITE_SUPABASE_URL }}
-          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ vars.RAJA567_VITE_SUPABASE_PUBLISHABLE_KEY }}
+          VITE_SUPABASE_URL: ${{ vars.MEGHA777_VITE_SUPABASE_URL }}
+          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ vars.MEGHA777_VITE_SUPABASE_PUBLISHABLE_KEY }}
         run: npm run build
       - name: Deploy production
         env:
@@ -43,4 +43,4 @@ jobs:
         run: |
           test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "Missing repository variable CLOUDFLARE_ACCOUNT_ID"; exit 1; }
           test -n "$CLOUDFLARE_API_TOKEN" || { echo "Missing repository secret CLOUDFLARE_API_TOKEN"; exit 1; }
-          npx wrangler pages deploy dist --project-name raja567-download --branch variant/non-gambling --commit-hash "$GITHUB_SHA"
+          npx wrangler pages deploy dist --project-name megha777-download --branch variant/megha777-download --commit-hash "$GITHUB_SHA"

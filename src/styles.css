@@ -6,7 +6,7 @@
 
 @theme inline {
   --font-sans: "Archivo", system-ui, sans-serif;
-  --font-display: Georgia, "Times New Roman", serif;
+  --font-display: "Archivo", system-ui, sans-serif;
   --radius-sm: calc(var(--radius) - 2px);
   --radius-md: var(--radius);
   --radius-lg: var(--radius);
@@ -36,27 +36,27 @@
 
 :root {
   --radius: 0.75rem;
-  --background: #fffcf7;
-  --foreground: #321822;
+  --background: #fcfbff;
+  --foreground: #201b38;
   --card: #ffffff;
-  --card-foreground: #321822;
+  --card-foreground: #201b38;
   --popover: #ffffff;
-  --popover-foreground: #321822;
-  --primary: #960024;
-  --primary-foreground: #fffcf7;
-  --secondary: #65051e;
-  --secondary-foreground: #fffcf7;
-  --muted: #f6efe5;
-  --muted-foreground: #746168;
-  --accent: #f4e2c5;
-  --accent-foreground: #65051e;
-  --gold: #c77717;
+  --popover-foreground: #201b38;
+  --primary: #5b36d9;
+  --primary-foreground: #fcfbff;
+  --secondary: #392478;
+  --secondary-foreground: #fcfbff;
+  --muted: #f3f0fc;
+  --muted-foreground: #6b627d;
+  --accent: #e8e0ff;
+  --accent-foreground: #392478;
+  --gold: #6e5cce;
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.99 0 0);
   --success: oklch(0.55 0.14 150);
-  --border: #e9dcd3;
-  --input: #e9dcd3;
-  --ring: #960024;
+  --border: #e5dff1;
+  --input: #e5dff1;
+  --ring: #5b36d9;
 }
 
 @layer base {

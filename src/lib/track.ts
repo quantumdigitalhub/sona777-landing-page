@@ -2,7 +2,7 @@ import { supabase } from "@/integrations/supabase/client";
 
 export type Placement = "hero" | "sticky_mobile" | "header" | "other";
 
-const STORAGE_KEY = "raja567-download-click";
+const STORAGE_KEY = "megha777-download-click";
 const trackingEnabled = Boolean(
   import.meta.env["VITE_SUPABASE_URL"] && import.meta.env["VITE_SUPABASE_PUBLISHABLE_KEY"],
 );

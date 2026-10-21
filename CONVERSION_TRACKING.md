@@ -1,4 +1,4 @@
-# Raja567 conversion tracking — developer handoff
+# Megha 777 conversion tracking — developer handoff
 
 ## What is measured
 
@@ -14,18 +14,20 @@
 2. Add an **optional installation reference** field during onboarding. The website displays the click UUID with a copy control when a real APK is available. Validate the UUID and pass it to your backend; never block onboarding if missing. Persist it with the installation and forward it on registration.
 3. A sideload APK does **not** automatically inherit browser cookies, session storage or URL parameters. Do not assume Play Install Referrer works for this direct APK. Manual reference transfer is the current attribution mechanism; users who skip it remain unattributed. Automatic deferred attribution requires a separate agreed distribution/deep-link solution.
 4. Backend sends the events below and retries transient failures, reusing `event_id`. First-open should be emitted when first launch is actually observed, not when an APK is requested. Registration must represent account creation, not login or reinstalls.
-5. Never embed `CONVERSION_WEBHOOK_SECRET` in the APK, JavaScript, or a public URL. Keep the same shared secret in both trusted backends. The secure secret form already stores the website side.
+5. Never embed `CONVERSION_WEBHOOK_SECRET` in the APK, JavaScript, or a public URL. Keep the same shared secret in both trusted backends. Configure the website runtime secret separately for the Megha 777 project.
 
 ## Callback contract
 
-POST to `/api/public/conversions` on Raja567's deployed production domain. Use the address assigned to the `raja567-landing` Cloudflare Pages project once it is created. Configure `SUPABASE_SERVICE_ROLE_KEY` and `CONVERSION_WEBHOOK_SECRET` in that project's production environment before callbacks can be accepted. No browser CORS access is provided: this is backend-to-backend.
+POST to `/api/public/conversions` on Megha 777's deployed production domain. The production site is `https://megha777-download.pages.dev` in the `megha777-download` Cloudflare Pages project. Configure `SUPABASE_SERVICE_ROLE_KEY` and `CONVERSION_WEBHOOK_SECRET` in that project's production environment before callbacks can be accepted. No browser CORS access is provided: this is backend-to-backend.
 
 Headers:
+
 - `Content-Type: application/json`
 - `X-Conversion-Timestamp`: current UNIX seconds; refreshed for each retry
 - `X-Conversion-Signature`: lowercase hex HMAC-SHA256 of `timestamp + "." + exactRawJsonBody`, using the shared secret
 
 Body (UUIDs below are illustrative, not credentials):
+
 ```json
 {
   "event_id": "4b87eddd-fd83-42d5-9b23-e4f14babf579",
@@ -49,7 +51,7 @@ To compare cohorts by date, filter `download_clicks.created_at` in your reportin
 
 ## Launch checklist
 
-- Supply the real APK URL; website attempts are intentionally disabled until then.
+- Verify the configured app file at `https://cdn.kc777.bet/megha777.apk`.
 - Publish the website and configure its callback origin and shared secret in the trusted app backend.
 - Integrate the reference input and two callbacks; maintain event retry/idempotency.
 - Perform a real CTA → APK → first launch → reference entry → registration test, then verify both callbacks in private reporting.

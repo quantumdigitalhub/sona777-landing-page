@@ -6,12 +6,12 @@ const LanguageContext = createContext({ language: "en" as Language, setLanguage:
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguage] = useState<Language>("en");
   useEffect(() => {
-    try { if (localStorage.getItem("raja567-language") === "hi") setLanguage("hi"); } catch { /* Storage may be unavailable. */ }
+    try { if (localStorage.getItem("megha777-language") === "hi") setLanguage("hi"); } catch { /* Storage may be unavailable. */ }
   }, []);
   useEffect(() => { document.documentElement.lang = language; }, [language]);
   function changeLanguage(value: Language) {
     setLanguage(value);
-    try { localStorage.setItem("raja567-language", value); } catch { /* Keep the current session usable. */ }
+    try { localStorage.setItem("megha777-language", value); } catch { /* Keep the current session usable. */ }
   }
   return <LanguageContext.Provider value={{ language, setLanguage: changeLanguage, t: (en, hi) => language === "hi" ? hi : en }}>{children}</LanguageContext.Provider>;
 }

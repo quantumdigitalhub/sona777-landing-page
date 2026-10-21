@@ -18,16 +18,16 @@ function startApkDownload() {
 export const Route = createFileRoute("/download")({
   head: () => ({
     meta: [
-      { title: "Install Raja567 app on Android | Hindi & English Guide" },
+      { title: "Install Megha 777 app on Android | Hindi & English Guide" },
       {
         name: "description",
         content:
-          "Step-by-step Raja567 app installation instructions for Android in Hindi and English, with download and installation help.",
+          "Step-by-step Megha 777 app installation instructions for Android in Hindi and English, with download and installation help.",
       },
-      { property: "og:title", content: "Raja567 Android Installation Guide" },
+      { property: "og:title", content: "Megha 777 Android Installation Guide" },
       {
         property: "og:description",
-        content: "Download and install the Raja567 app with Hindi and English instructions.",
+        content: "Download and install the Megha 777 app with Hindi and English instructions.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
@@ -97,7 +97,7 @@ function DownloadPage() {
           {t("Android installation", "Android इंस्टॉलेशन")}
         </p>
         <h1 className="mt-2 font-display text-2xl sm:text-3xl">
-          {t("Install Raja567", "Raja567 इंस्टॉल करें")}
+          {t("Install Megha 777", "Megha 777 इंस्टॉल करें")}
         </h1>
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
           {t(
@@ -202,8 +202,8 @@ function DownloadPage() {
             <WhatsAppSupport />
             <p className="mt-2 text-sm text-muted-foreground">
               {t(
-                "Contact Raja567 on WhatsApp for installation help.",
-                "इंस्टॉल करने में मदद के लिए Raja567 से WhatsApp पर संपर्क करें।",
+                "Use the installation instructions and answers below for help.",
+                "मदद के लिए नीचे दिए इंस्टॉल करने के निर्देश और जवाब पढ़ें।",
               )}
             </p>
           </div>

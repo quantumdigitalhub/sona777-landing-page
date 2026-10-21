@@ -8,7 +8,7 @@ import {
   Smartphone,
   Check,
 } from "lucide-react";
-import appPreview from "@/assets/raja567-app-preview.png";
+import brandArtwork from "@/assets/megha777-stacked.svg";
 import { SiteHeader, SiteFooter, DownloadBtn } from "@/components/SiteHeader";
 import { WhatsAppSupport } from "@/components/WhatsAppSupport";
 import { useLanguage } from "@/lib/language";
@@ -16,13 +16,13 @@ import { useLanguage } from "@/lib/language";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Raja567 App Download | Android Installation Guide" },
+      { title: "Megha 777 App Download | Android Installation Guide" },
       {
         name: "description",
         content:
-          "Download the Raja567 Android app. Find app installation instructions and download help in English and Hindi.",
+          "Download the Megha 777 Android app. Find app installation instructions and download help in English and Hindi.",
       },
-      { property: "og:title", content: "Download Raja567 for Android" },
+      { property: "og:title", content: "Download Megha 777 for Android" },
       {
         property: "og:description",
         content:
@@ -56,8 +56,8 @@ function Index() {
       icon: Smartphone,
       title: t("Open the app", "ऐप खोलें"),
       body: t(
-        "Once installation finishes, open Raja567 from your phone.",
-        "इंस्टॉल होने के बाद अपने फ़ोन पर Raja567 खोलें।",
+        "Once installation finishes, open Megha 777 from your phone.",
+        "इंस्टॉल होने के बाद अपने फ़ोन पर Megha 777 खोलें।",
       ),
     },
   ];
@@ -73,7 +73,7 @@ function Index() {
                 {t("Available for Android", "Android के लिए उपलब्ध")}
               </p>
               <h1 className="font-display text-4xl leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-                {t("Raja567.", "Raja567।")}
+                {t("Megha 777.", "Megha 777।")}
                 <br />
                 <span className="text-primary">
                   {t("One download away.", "बस एक डाउनलोड दूर।")}
@@ -81,8 +81,8 @@ function Index() {
               </h1>
               <p className="mx-auto mt-4 max-w-md text-base sm:mt-5 sm:text-lg leading-relaxed text-muted-foreground md:mx-0">
                 {t(
-                  "Get Raja567 on your Android phone. Download the app and follow our simple, step-by-step installation guide.",
-                  "अपने Android फ़ोन पर Raja567 पाएँ। ऐप डाउनलोड करें और इंस्टॉल करने के आसान निर्देशों का पालन करें।",
+                  "Get Megha 777 on your Android phone. Download the app and follow our simple, step-by-step installation guide.",
+                  "अपने Android फ़ोन पर Megha 777 पाएँ। ऐप डाउनलोड करें और इंस्टॉल करने के आसान निर्देशों का पालन करें।",
                 )}
               </p>
               <div className="mt-6 flex flex-col items-stretch justify-center gap-2 sm:mt-8 sm:flex-row sm:items-center sm:gap-5 md:justify-start">
@@ -103,18 +103,18 @@ function Index() {
               </p>
             </div>
             <figure className="mx-auto w-full max-w-64 sm:max-w-72 lg:max-w-80">
-              <div className="overflow-hidden rounded-[2rem] border-[6px] border-background bg-card shadow-xl shadow-primary/10 ring-1 ring-primary/15">
+              <div className="overflow-hidden rounded-[2rem] border-[6px] border-background bg-card p-5 shadow-xl shadow-primary/10 ring-1 ring-primary/15">
                 <img
-                  src={appPreview}
-                  alt={t("Raja567 app home screen", "Raja567 ऐप की होम स्क्रीन")}
-                  width={1440}
-                  height={2995}
+                  src={brandArtwork}
+                  alt={t("Megha 777 logo", "Megha 777 लोगो")}
+                  width={480}
+                  height={520}
                   fetchPriority="high"
                   className="block h-auto w-full"
                 />
               </div>
               <figcaption className="mt-4 text-center text-xs text-muted-foreground">
-                {t("A look inside Raja567", "Raja567 ऐप की एक झलक")}
+                {t("Megha 777 for Android", "Android के लिए Megha 777")}
               </figcaption>
             </figure>
           </div>
@@ -242,7 +242,7 @@ function Index() {
         <section className="bg-primary text-primary-foreground">
           <div className="mx-auto max-w-3xl px-4 py-10 sm:px-5 sm:py-14 text-center">
             <h2 className="font-display text-2xl sm:text-3xl">
-              {t("Get Raja567 on your phone", "अपने फ़ोन पर Raja567 पाएँ")}
+              {t("Get Megha 777 on your phone", "अपने फ़ोन पर Megha 777 पाएँ")}
             </h2>
             <p className="mt-4 opacity-90">
               {t(

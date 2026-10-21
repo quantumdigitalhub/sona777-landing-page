@@ -1,8 +1,8 @@
 # Cloudflare Pages deployment
 
-This branch (`variant/non-gambling`) contains the Raja567 app download variant. The original Raja567 site remains on `raja-567`. The Sona777 app download variant is preserved on `variant/sona-non-gambling`.
+This branch (`variant/megha777-download`) contains the Megha 777 app download site. Sona777 and Raja567 remain on their existing branches and Cloudflare projects.
 
-This variant includes an app download landing page and `/download` with English/Hindi APK installation guidance. Charts and article URLs return 404. The homepage displays the supplied Raja567 app screenshot. There are no live result-provider requests. Meta Pixel `1543631320841240` loads in the shared document shell and records `PageView`, with a noscript image fallback. The existing Raja567 APK URL is centralized in `src/lib/data.ts` and used only by the download page; changing the landing page does not change the app itself. WhatsApp installation support uses the existing Raja567 contact, centralized in `WHATSAPP_SUPPORT_URL`.
+The homepage uses original SVG logos and a violet theme. `/download` provides English/Hindi installation guidance and the supplied Android download URL. All download calls to action route through `/download`. No Meta Pixel or WhatsApp contact has been supplied for this app; support controls show an explicit unavailable state. No live result feed or app screenshot is presented.
 
 ## Local verification
 
@@ -18,11 +18,11 @@ Open `http://localhost:4174`. Deploy the complete `dist` directory, including `_
 
 ## Separate deployment target
 
-This branch targets the separate Cloudflare Pages project `raja567-download`, hosted at https://raja567-download.pages.dev. Before the first deployment, create a Direct Upload project with production branch `variant/non-gambling`:
+This branch targets the separate Cloudflare Pages project `megha777-download`, hosted at https://megha777-download.pages.dev. Before the first deployment, create a Direct Upload project with production branch `variant/megha777-download`:
 
 ```sh
 npx wrangler login
-npx wrangler pages project create raja567-download --production-branch variant/non-gambling
+npx wrangler pages project create megha777-download --production-branch variant/megha777-download
 ```
 
 The GitHub Actions workflow runs for this branch and uses repository variable `CLOUDFLARE_ACCOUNT_ID` and secret `CLOUDFLARE_API_TOKEN`. The token needs Cloudflare Pages edit access to the target project. Existing Sona777 and Raja567 deployment targets are unchanged on their branches.
@@ -33,7 +33,7 @@ For a manual deployment after setup:
 npm run deploy:pages
 ```
 
-No deployment or remote project creation is performed by local verification. Retained conversion callback infrastructure is documented in [CONVERSION_TRACKING.md](./CONVERSION_TRACKING.md); CTA references are recorded before navigation and reused for APK attempts. Supabase tracking is optional; provide `RAJA567_VITE_SUPABASE_URL` and `RAJA567_VITE_SUPABASE_PUBLISHABLE_KEY` repository variables to enable it. The download page offers the installation reference for explicit transfer to the app.
+No deployment or remote project creation is performed by local verification. Retained conversion callback infrastructure is documented in [CONVERSION_TRACKING.md](./CONVERSION_TRACKING.md); CTA references are recorded before navigation and reused for APK attempts. Supabase tracking is optional; provide `MEGHA777_VITE_SUPABASE_URL` and `MEGHA777_VITE_SUPABASE_PUBLISHABLE_KEY` repository variables to enable it. The download page offers the installation reference for explicit transfer to the app.
 
 ## Verify after deployment
 

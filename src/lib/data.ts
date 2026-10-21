@@ -1,2 +1,2 @@
-export const APK_URL = "https://cdn.kc777.bet/raja567.apk";
-export const WHATSAPP_SUPPORT_URL = "https://wa.me/917410919134";
+export const APK_URL = "https://cdn.kc777.bet/megha777.apk";
+export const WHATSAPP_SUPPORT_URL = "";

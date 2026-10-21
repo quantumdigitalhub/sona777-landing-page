@@ -4,7 +4,7 @@ import { Download, Menu, X } from "lucide-react";
 import { useLanguage } from "@/lib/language";
 import { Button } from "@/components/ui/button";
 import { trackDownload, type Placement } from "@/lib/track";
-import horizontalLogo from "@/assets/raja567-horizontal.png";
+import horizontalLogo from "@/assets/megha777-horizontal.svg";
 
 export function DownloadBtn({
   placement = "header",
@@ -45,15 +45,15 @@ export function SiteHeader() {
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 py-2 sm:gap-3 sm:py-3">
         <Link
           to="/"
-          aria-label={t("Raja567 home", "Raja567 होम")}
+          aria-label={t("Megha 777 home", "Megha 777 होम")}
           className="flex min-h-11 min-w-0 items-center"
         >
           <img
             src={horizontalLogo}
-            alt="Raja567"
-            width={2172}
-            height={724}
-            className="h-auto w-24 sm:w-32 lg:w-36"
+            alt="Megha 777"
+            width={500}
+            height={112}
+            className="h-auto w-28 sm:w-36 lg:w-44"
           />
         </Link>
         <nav
@@ -134,15 +134,15 @@ export function SiteFooter() {
     <>
       <footer className="border-t border-primary/20 bg-muted px-4 py-8 text-center text-sm leading-relaxed text-muted-foreground sm:py-10">
         <Link to="/" className="inline-flex min-h-11 items-center font-bold text-primary">
-          Raja567
+          Megha 777
         </Link>
         <p className="mt-2">
           {t(
-            "Raja567 for Android. Installation help in English and Hindi.",
-            "Android के लिए Raja567। इंस्टॉल करने में मदद अंग्रेज़ी और हिन्दी में।",
+            "Megha 777 for Android. Installation help in English and Hindi.",
+            "Android के लिए Megha 777। इंस्टॉल करने में मदद अंग्रेज़ी और हिन्दी में।",
           )}
         </p>
-        <p className="mt-4 text-xs">© 2026 Raja567.</p>
+        <p className="mt-4 text-xs">© 2026 Megha 777.</p>
       </footer>
       {!onDownloadPage && (
         <>
