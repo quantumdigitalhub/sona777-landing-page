@@ -2,7 +2,7 @@
 
 This branch (`variant/non-gambling`) contains the Raja567 app download variant. The original Raja567 site remains on `raja-567`. The Sona777 app download variant is preserved on `variant/sona-non-gambling`.
 
-This variant includes an app download landing page and `/download` with English/Hindi APK installation guidance. Charts and article URLs return 404. The homepage uses Raja567 brand artwork. There are no live result-provider requests or Meta Pixel. The existing Raja567 APK URL is centralized in `src/lib/data.ts` and used only by the download page; changing the landing page does not change the app itself. WhatsApp installation support uses the existing Raja567 contact, centralized in `WHATSAPP_SUPPORT_URL`.
+This variant includes an app download landing page and `/download` with English/Hindi APK installation guidance. Charts and article URLs return 404. The homepage displays the supplied Raja567 app screenshot. There are no live result-provider requests or Meta Pixel. The existing Raja567 APK URL is centralized in `src/lib/data.ts` and used only by the download page; changing the landing page does not change the app itself. WhatsApp installation support uses the existing Raja567 contact, centralized in `WHATSAPP_SUPPORT_URL`.
 
 ## Local verification
 

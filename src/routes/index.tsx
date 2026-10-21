@@ -8,7 +8,7 @@ import {
   Smartphone,
   Check,
 } from "lucide-react";
-import brandArtwork from "@/assets/raja567-stacked.png";
+import appPreview from "@/assets/raja567-app-preview.png";
 import { SiteHeader, SiteFooter, DownloadBtn } from "@/components/SiteHeader";
 import { WhatsAppSupport } from "@/components/WhatsAppSupport";
 import { useLanguage } from "@/lib/language";
@@ -103,18 +103,18 @@ function Index() {
               </p>
             </div>
             <figure className="mx-auto w-full max-w-64 sm:max-w-72 lg:max-w-80">
-              <div className="overflow-hidden rounded-[2rem] border-[6px] border-background bg-card p-5 shadow-xl shadow-primary/10 ring-1 ring-primary/15">
+              <div className="overflow-hidden rounded-[2rem] border-[6px] border-background bg-card shadow-xl shadow-primary/10 ring-1 ring-primary/15">
                 <img
-                  src={brandArtwork}
-                  alt={t("Raja567 logo", "Raja567 लोगो")}
-                  width={1236}
-                  height={1273}
+                  src={appPreview}
+                  alt={t("Raja567 app home screen", "Raja567 ऐप की होम स्क्रीन")}
+                  width={1440}
+                  height={2995}
                   fetchPriority="high"
                   className="block h-auto w-full"
                 />
               </div>
               <figcaption className="mt-4 text-center text-xs text-muted-foreground">
-                {t("Raja567 for Android", "Android के लिए Raja567")}
+                {t("A look inside Raja567", "Raja567 ऐप की एक झलक")}
               </figcaption>
             </figure>
           </div>
