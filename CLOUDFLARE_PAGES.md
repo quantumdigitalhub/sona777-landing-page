@@ -1,68 +1,44 @@
 # Cloudflare Pages deployment
 
-Production site: https://sona777-landing.pages.dev. The Pages project is `sona777-landing`, with `main` as its production branch.
+This branch (`variant/sona-non-gambling`) contains the Sona777 app download variant. The original Sona777 site remains on `main`. The Raja567 informational variant is preserved on `variant/non-gambling`.
 
-The app uses TanStack Start server rendering and Nitro's `cloudflare-pages` preset. Deploy the complete `dist` directory, including `_worker.js`. The worker handles live result requests and conversion callbacks; static hosting alone will not run those features.
+This variant includes an app download landing page and `/download` with English/Hindi APK installation guidance. Charts and article URLs return 404. The homepage includes the supplied app screenshot as a preview. There are no live result-provider requests or Meta Pixel. The existing Sona777 APK URL is centralized in `src/lib/data.ts` and used only by the download page; changing the landing page does not change the app itself. WhatsApp support shows an unavailable message until a contact is configured.
 
-## Automatic GitHub deployment
-
-Repository: https://github.com/quantumdigitalhub/sona777-landing-page.
-
-[The deployment workflow](./.github/workflows/deploy-pages.yml) runs on pushes to `main` and can be started manually from the repository's Actions tab. It installs from `bun.lock`, runs tests and TypeScript checks, builds `dist`, and uploads it to the existing `sona777-landing` Pages project. Production deployments run one at a time.
-
-The project was created using Direct Upload. Cloudflare cannot switch it to its built-in Git integration; GitHub Actions deploys into the existing project and preserves `sona777-landing.pages.dev` and `app.sona777.app`.
-
-Configure these values under repository Settings → Secrets and variables → Actions:
-
-| Name                            | Type     | Purpose                                                           |
-| ------------------------------- | -------- | ----------------------------------------------------------------- |
-| `CLOUDFLARE_ACCOUNT_ID`         | Variable | Quantum Digital Hub's Cloudflare account                          |
-| `VITE_SUPABASE_URL`             | Variable | Public Supabase URL embedded in the browser bundle                |
-| `VITE_SUPABASE_PUBLISHABLE_KEY` | Variable | Public Supabase key used for CTA and download tracking            |
-| `CLOUDFLARE_API_TOKEN`          | Secret   | API token with Account → Cloudflare Pages → Edit for that account |
-
-The three repository variables are configured from the existing deployment settings. Create the Cloudflare API token at https://dash.cloudflare.com/profile/api-tokens and store it directly in [GitHub Actions secrets](https://github.com/quantumdigitalhub/sona777-landing-page/settings/secrets/actions). Wrangler's local OAuth login is not used by GitHub Actions. Once the secret is configured, push to `main` or select Actions → Deploy to Cloudflare Pages → Run workflow.
-
-## Runtime configuration
-
-These server values belong in Cloudflare Pages' production environment, rather than in the browser build or workflow:
-
-| Variable                    | Purpose                                                 |
-| --------------------------- | ------------------------------------------------------- |
-| `SUPABASE_URL`              | Supabase URL available to server requests               |
-| `SUPABASE_PUBLISHABLE_KEY`  | Public key available to server requests                 |
-| `SUPABASE_SERVICE_ROLE_KEY` | Runtime secret for authenticated conversion storage     |
-| `CONVERSION_WEBHOOK_SECRET` | Runtime HMAC secret shared with the trusted app backend |
-
-The deployed project already has `SUPABASE_URL` and `SUPABASE_PUBLISHABLE_KEY`. Conversion callbacks still need the service-role key and webhook secret. Store those as encrypted Cloudflare secrets; never prefix them with `VITE_` or commit them. Live results are fetched server-side from `RESULTS_BASE_URL` without credentials.
-
-Apply the existing tracking database migrations and policies if they have not already been applied. See [CONVERSION_TRACKING.md](./CONVERSION_TRACKING.md) for the callback contract.
-
-## Local Cloudflare preview
+## Local verification
 
 ```sh
 bun install --frozen-lockfile
+npm test
+npx tsc --noEmit
 npm run build
 npm run preview:pages
 ```
 
-Open `http://localhost:4174`. For runtime secrets during local preview, use an ignored `.dev.vars` file with the server variable names above. Browser variables must be set in `.env` before building. Both files are ignored by Git.
+Open `http://localhost:4174`. Deploy the complete `dist` directory, including `_worker.js`, because the site uses TanStack Start server rendering.
 
-## Manual deployment
+## Separate deployment target
+
+This branch targets the separate Cloudflare Pages project `sona777-download`, hosted at https://sona777-download.pages.dev. Before the first deployment, create a Direct Upload project with production branch `variant/sona-non-gambling`:
 
 ```sh
 npx wrangler login
+npx wrangler pages project create sona777-download --production-branch variant/sona-non-gambling
+```
+
+The GitHub Actions workflow runs for this branch and uses repository variable `CLOUDFLARE_ACCOUNT_ID` and secret `CLOUDFLARE_API_TOKEN`. The token needs Cloudflare Pages edit access to the target project. Existing Sona777 and Raja567 deployment targets are unchanged on their branches.
+
+For a manual deployment after setup:
+
+```sh
 npm run deploy:pages
 ```
 
-The deploy script builds first, then uploads to the Pages project configured in `wrangler.jsonc`. Run it only after configuring the project's environment variables and secrets. The script does not create or migrate the Supabase database.
+No deployment or remote project creation is performed by local verification. Retained conversion callback infrastructure is documented in [CONVERSION_TRACKING.md](./CONVERSION_TRACKING.md); CTA references are recorded before navigation and reused for APK attempts. Supabase tracking is optional; provide `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` repository variables to enable it. The download page offers the installation reference for explicit transfer to the app.
 
 ## Verify after deployment
 
-- Open `/` and confirm the logos, hero image, and all three result categories load.
-- Refresh the results to check the deployed server function.
-- Open a chart and confirm the address remains on the landing site's `/charts/...` route.
-- Open `/download` and verify the Download App button targets the configured CDN file.
-- Confirm unsigned conversion callbacks are rejected; validate signed callbacks with the app backend when its integration is ready.
-
-References: [Nitro Cloudflare Pages preset](https://nitro.build/deploy/providers/cloudflare#cloudflare-pages), [Cloudflare continuous deployment guide](https://developers.cloudflare.com/pages/how-to/use-direct-upload-with-continuous-integration/), and [Pages Wrangler configuration](https://developers.cloudflare.com/pages/functions/wrangler-configuration/).
+- Open `/` and `/download`, then switch between English and Hindi.
+- Refresh the page and confirm the selected language persists after hydration.
+- Confirm `/charts`, `/blog` and retired article URLs return 404.
+- Check CTA placement tracking and the APK target on `/download`.
+- Check metadata and outbound links for the informational content.

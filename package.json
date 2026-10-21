@@ -9,7 +9,7 @@
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "preview:pages": "wrangler pages dev --port 4174",
-    "deploy:pages": "npm run build && wrangler pages deploy",
+    "deploy:pages": "npm run build && wrangler pages deploy dist --project-name sona777-download --branch variant/sona-non-gambling",
     "lint": "eslint .",
     "format": "prettier --write .",
     "test": "vitest run",
