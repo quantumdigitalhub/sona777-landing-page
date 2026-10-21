@@ -1,24 +1,32 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, BookOpen, Globe, Sparkles } from "lucide-react";
-import stackedLogo from "@/assets/raja567-stacked.png";
-import { SiteHeader, SiteFooter } from "@/components/SiteHeader";
-import { Button } from "@/components/ui/button";
-import { posts } from "@/lib/data";
+import {
+  ArrowRight,
+  Download,
+  FileDown,
+  FolderOpen,
+  Languages,
+  Smartphone,
+  Check,
+} from "lucide-react";
+import brandArtwork from "@/assets/raja567-stacked.png";
+import { SiteHeader, SiteFooter, DownloadBtn } from "@/components/SiteHeader";
+import { WhatsAppSupport } from "@/components/WhatsAppSupport";
 import { useLanguage } from "@/lib/language";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Raja567 | Everyday Digital Guides" },
+      { title: "Raja567 App Download | Android Installation Guide" },
       {
         name: "description",
         content:
-          "Explore practical guides for everyday digital life, available in English and Hindi.",
+          "Download the Raja567 Android app. Find app installation instructions and download help in English and Hindi.",
       },
-      { property: "og:title", content: "Raja567 | Everyday Digital Guides" },
+      { property: "og:title", content: "Download Raja567 for Android" },
       {
         property: "og:description",
-        content: "Simple ideas for a more thoughtful digital routine. Read in English or Hindi.",
+        content:
+          "Get the Android app with step-by-step installation guidance in English and Hindi.",
       },
     ],
   }),
@@ -27,132 +35,201 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const { t } = useLanguage();
-  const features = [
+  const steps = [
     {
-      icon: BookOpen,
-      title: t("Useful, everyday ideas", "रोज़मर्रा के उपयोगी सुझाव"),
+      icon: Download,
+      title: t("Download", "डाउनलोड करें"),
       body: t(
-        "Short reads with steps you can try at your own pace.",
-        "छोटे लेख और आसान कदम जिन्हें आप अपनी सुविधा से आज़मा सकते हैं।",
+        "Open the download page to download the Android app.",
+        "Android ऐप डाउनलोड करने के लिए डाउनलोड पेज खोलें।",
       ),
     },
     {
-      icon: Globe,
-      title: t("Read in your language", "अपनी भाषा में पढ़ें"),
+      icon: FolderOpen,
+      title: t("Install", "इंस्टॉल करें"),
       body: t(
-        "Switch between English and Hindi on any page.",
-        "किसी भी पेज पर अंग्रेज़ी और हिन्दी के बीच भाषा बदलें।",
+        "Open the downloaded file and follow the installation guide.",
+        "डाउनलोड की गई फ़ाइल खोलें और इंस्टॉल करने के निर्देश पढ़ें।",
       ),
     },
     {
-      icon: Sparkles,
-      title: t("A simpler routine", "आसान दिनचर्या"),
+      icon: Smartphone,
+      title: t("Open the app", "ऐप खोलें"),
       body: t(
-        "Find a little more clarity in your everyday digital life.",
-        "अपनी रोज़मर्रा की डिजिटल ज़िंदगी को थोड़ा आसान बनाएँ।",
+        "Once installation finishes, open Raja567 from your phone.",
+        "इंस्टॉल होने के बाद अपने फ़ोन पर Raja567 खोलें।",
       ),
     },
   ];
-
   return (
     <div className="min-h-screen">
       <SiteHeader />
       <main>
-        <section className="overflow-hidden border-b border-gold/30 bg-linear-to-br from-background via-muted to-accent/50">
-          <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-14 text-center md:grid-cols-2 md:py-24 md:text-left">
+        <section className="overflow-hidden border-b border-primary/20 bg-linear-to-br from-background via-muted to-accent/50">
+          <div className="mx-auto grid max-w-6xl items-center gap-7 px-4 py-8 text-center sm:gap-12 sm:px-5 sm:py-14 md:grid-cols-2 md:py-20 md:text-left">
             <div>
-              <p className="mb-5 text-xs font-bold uppercase tracking-[0.18em] text-primary">
-                {t("Welcome to Raja567", "Raja567 में आपका स्वागत है")}
+              <p className="mb-4 inline-flex sm:mb-6 items-center gap-2 rounded-full border border-primary/20 bg-background px-4 py-2 text-xs font-bold uppercase tracking-widest text-primary">
+                <Smartphone aria-hidden className="size-4" />
+                {t("Available for Android", "Android के लिए उपलब्ध")}
               </p>
-              <h1 className="font-display text-5xl leading-tight tracking-tight sm:text-6xl">
-                {t("Small ideas.", "छोटे सुझाव।")}
+              <h1 className="font-display text-4xl leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+                {t("Raja567.", "Raja567।")}
                 <br />
                 <span className="text-primary">
-                  {t("Everyday possibilities.", "हर दिन नई संभावनाएँ।")}
+                  {t("One download away.", "बस एक डाउनलोड दूर।")}
                 </span>
               </h1>
-              <p className="mx-auto mt-5 max-w-md leading-relaxed text-muted-foreground md:mx-0">
+              <p className="mx-auto mt-4 max-w-md text-base sm:mt-5 sm:text-lg leading-relaxed text-muted-foreground md:mx-0">
                 {t(
-                  "Make room for a simpler digital life. Explore practical guides, thoughtful habits and useful ideas in English and Hindi.",
-                  "डिजिटल ज़िंदगी को आसान बनाएँ। अंग्रेज़ी और हिन्दी में उपयोगी गाइड, अच्छी आदतें और सरल सुझाव पढ़ें।",
+                  "Get Raja567 on your Android phone. Download the app and follow our simple, step-by-step installation guide.",
+                  "अपने Android फ़ोन पर Raja567 पाएँ। ऐप डाउनलोड करें और इंस्टॉल करने के आसान निर्देशों का पालन करें।",
                 )}
               </p>
-              <Button asChild size="lg" className="mt-7 shadow-none">
-                <Link to="/blog">
-                  {t("Explore the guides", "गाइड पढ़ें")}
-                  <ArrowUpRight aria-hidden />
-                </Link>
-              </Button>
+              <div className="mt-6 flex flex-col items-stretch justify-center gap-2 sm:mt-8 sm:flex-row sm:items-center sm:gap-5 md:justify-start">
+                <DownloadBtn placement="hero" big />
+                <a
+                  href="#installation"
+                  className="inline-flex min-h-11 items-center justify-center gap-2 text-sm font-semibold text-primary"
+                >
+                  {t("How to install", "इंस्टॉल कैसे करें")}
+                  <ArrowRight aria-hidden className="size-4" />
+                </a>
+              </div>
+              <p className="mt-3 text-xs sm:mt-4 text-muted-foreground">
+                {t(
+                  "Android app · Installation help in English & Hindi",
+                  "Android ऐप · इंस्टॉल करने में मदद अंग्रेज़ी और हिन्दी में",
+                )}
+              </p>
             </div>
-            <div className="mx-auto flex aspect-square w-full max-w-sm items-center justify-center rounded-full border border-gold/30 bg-background/60 p-10">
-              <img
-                src={stackedLogo}
-                alt="Raja567"
-                width={1236}
-                height={1273}
-                fetchPriority="high"
-                className="h-auto w-full"
-              />
-            </div>
+            <figure className="mx-auto w-full max-w-64 sm:max-w-72 lg:max-w-80">
+              <div className="overflow-hidden rounded-[2rem] border-[6px] border-background bg-card p-5 shadow-xl shadow-primary/10 ring-1 ring-primary/15">
+                <img
+                  src={brandArtwork}
+                  alt={t("Raja567 logo", "Raja567 लोगो")}
+                  width={1236}
+                  height={1273}
+                  fetchPriority="high"
+                  className="block h-auto w-full"
+                />
+              </div>
+              <figcaption className="mt-4 text-center text-xs text-muted-foreground">
+                {t("Raja567 for Android", "Android के लिए Raja567")}
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+        <section aria-label={t("Download information", "डाउनलोड की जानकारी")} className="border-b">
+          <div className="mx-auto grid max-w-6xl gap-4 px-4 py-5 text-sm sm:gap-5 sm:px-5 sm:py-7 font-semibold sm:grid-cols-3">
+            {[
+              { icon: Smartphone, label: t("For Android phones", "Android फ़ोन के लिए") },
+              {
+                icon: Languages,
+                label: t("English & Hindi instructions", "अंग्रेज़ी और हिन्दी में निर्देश"),
+              },
+              {
+                icon: FileDown,
+                label: t("Step-by-step installation help", "इंस्टॉल करने के चरणों में मदद"),
+              },
+            ].map(({ icon: Icon, label }) => (
+              <div key={label} className="flex items-center justify-start gap-3 sm:justify-center">
+                <Icon aria-hidden className="size-5 text-primary" />
+                {label}
+              </div>
+            ))}
           </div>
         </section>
         <section
-          aria-label={t("About our guides", "हमारी गाइड के बारे में")}
-          className="mx-auto grid max-w-6xl gap-8 px-5 py-14 md:grid-cols-3"
+          id="installation"
+          className="mx-auto max-w-6xl scroll-mt-24 px-4 py-10 sm:px-5 sm:py-16"
         >
-          {features.map(({ icon: Icon, title, body }) => (
-            <div key={title}>
-              <Icon aria-hidden className="mb-4 size-6 text-primary" />
-              <h2 className="text-lg font-bold">{title}</h2>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{body}</p>
-            </div>
-          ))}
-        </section>
-        <section className="border-y bg-muted">
-          <div className="mx-auto max-w-6xl px-5 py-14">
-            <p className="text-xs font-bold uppercase tracking-widest text-primary">
-              {t("A little inspiration", "थोड़ी प्रेरणा")}
-            </p>
-            <h2 className="mt-2 font-display text-3xl">
-              {t("Start with something useful", "कुछ उपयोगी पढ़कर शुरुआत करें")}
-            </h2>
-            <div className="mt-8 grid gap-5 md:grid-cols-3">
-              {posts.map((post) => (
-                <Link
-                  key={post.slug}
-                  to="/blog/$slug"
-                  params={{ slug: post.slug }}
-                  className="rounded-md border bg-card p-6 transition-colors hover:border-primary"
-                >
-                  <BookOpen aria-hidden className="mb-6 size-5 text-primary" />
-                  <h3 className="text-lg font-bold">{t(post.title, post.titleHi)}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                    {t(post.description, post.descriptionHi)}
-                  </p>
-                  <span className="mt-6 inline-flex items-center gap-1 text-sm font-bold text-primary">
-                    {t("Read guide", "गाइड पढ़ें")}
-                    <ArrowUpRight aria-hidden className="size-4" />
-                  </span>
-                </Link>
-              ))}
-            </div>
+          <p className="text-center text-xs font-bold uppercase tracking-widest text-primary">
+            {t("Getting started", "शुरुआत करें")}
+          </p>
+          <h2 className="mt-3 text-center font-display text-2xl sm:text-3xl">
+            {t("Your app, in three simple steps", "तीन आसान चरणों में आपका ऐप")}
+          </h2>
+          <div className="mt-6 grid gap-3 sm:mt-10 sm:gap-5 md:grid-cols-3">
+            {steps.map(({ icon: Icon, title, body }, index) => (
+              <div key={title} className="rounded-xl border bg-card p-5 sm:p-7">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-bold text-primary">0{index + 1}</span>
+                  <Icon aria-hidden className="size-6 text-primary" />
+                </div>
+                <h3 className="mt-3 text-lg font-bold sm:mt-6 sm:text-xl">{title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{body}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-7 text-center">
+            <Link
+              to="/download"
+              className="inline-flex min-h-11 items-center justify-center gap-2 text-sm font-semibold text-primary underline underline-offset-4"
+            >
+              {t("View the full installation guide", "इंस्टॉल करने के पूरे निर्देश देखें")}
+              <ArrowRight aria-hidden className="size-4" />
+            </Link>
           </div>
         </section>
-        <section className="mx-auto max-w-3xl px-5 py-14">
-          <h2 className="font-display text-3xl">{t("Good to know", "ज़रूरी जानकारी")}</h2>
+        <section className="border-y bg-muted">
+          <div className="mx-auto max-w-3xl px-4 py-10 sm:px-5 sm:py-14">
+            <h2 className="font-display text-2xl sm:text-3xl">
+              {t("Before you download", "डाउनलोड करने से पहले")}
+            </h2>
+            <ul className="mt-6 space-y-4">
+              {[
+                t(
+                  "Use an Android phone. This download is not compatible with iPhone.",
+                  "Android फ़ोन का उपयोग करें। यह डाउनलोड iPhone पर काम नहीं करता।",
+                ),
+                t(
+                  "Have a stable internet connection and enough free storage.",
+                  "स्थिर इंटरनेट कनेक्शन और पर्याप्त खाली स्टोरेज रखें।",
+                ),
+                t(
+                  "Keep Play Protect enabled and review any installation warnings.",
+                  "Play Protect चालू रखें और इंस्टॉल करते समय दिखने वाली चेतावनियाँ पढ़ें।",
+                ),
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-3 text-sm leading-relaxed">
+                  <Check aria-hidden className="mt-0.5 size-5 shrink-0 text-primary" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+        <section className="mx-auto max-w-3xl px-4 py-10 sm:px-5 sm:py-16">
+          <h2 className="font-display text-2xl sm:text-3xl">
+            {t("Download questions", "डाउनलोड से जुड़े सवाल")}
+          </h2>
           {[
             [
-              t("Do I need an account?", "क्या अकाउंट की ज़रूरत है?"),
+              t("How do I download the app?", "ऐप कैसे डाउनलोड करूँ?"),
               t(
-                "No. All guides on this website are free to read without signing up.",
-                "नहीं। इस वेबसाइट की सभी गाइड बिना रजिस्ट्रेशन के मुफ़्त पढ़ सकते हैं।",
+                "Tap Play Now to open the download page. You’ll find the app download and the installation instructions there.",
+                "डाउनलोड पेज खोलने के लिए अभी खेलें पर टैप करें। वहाँ ऐप डाउनलोड और इंस्टॉल करने के निर्देश मिलेंगे।",
               ),
             ],
             [
-              t("Can I read in Hindi?", "क्या मैं हिन्दी में पढ़ सकता हूँ?"),
+              t("Does it work on iPhone?", "क्या यह iPhone पर चलता है?"),
               t(
-                "Yes. Use the language selector at the top of any page. Your choice is saved in this browser when storage is available.",
-                "हाँ। किसी भी पेज के ऊपर भाषा चुनें। ब्राउज़र में स्टोरेज उपलब्ध होने पर आपकी पसंद सहेजी जाती है।",
+                "This download is for Android phones. It cannot be installed on iPhone.",
+                "यह डाउनलोड Android फ़ोन के लिए है। इसे iPhone पर इंस्टॉल नहीं कर सकते।",
+              ),
+            ],
+            [
+              t("Where is the downloaded file?", "डाउनलोड की गई फ़ाइल कहाँ है?"),
+              t(
+                "Check Downloads in your browser or open the Downloads folder in your phone’s Files app.",
+                "ब्राउज़र में Downloads देखें या फ़ोन के Files ऐप में Downloads फ़ोल्डर खोलें।",
+              ),
+            ],
+            [
+              t("Need help installing?", "इंस्टॉल करने में मदद चाहिए?"),
+              t(
+                "The download page includes step-by-step instructions and answers to common installation questions in English and Hindi.",
+                "डाउनलोड पेज पर अंग्रेज़ी और हिन्दी में चरण-दर-चरण निर्देश और इंस्टॉल से जुड़े आम सवालों के जवाब हैं।",
               ),
             ],
           ].map(([question, answer]) => (
@@ -162,8 +239,25 @@ function Index() {
             </details>
           ))}
         </section>
+        <section className="bg-primary text-primary-foreground">
+          <div className="mx-auto max-w-3xl px-4 py-10 sm:px-5 sm:py-14 text-center">
+            <h2 className="font-display text-2xl sm:text-3xl">
+              {t("Get Raja567 on your phone", "अपने फ़ोन पर Raja567 पाएँ")}
+            </h2>
+            <p className="mt-4 opacity-90">
+              {t(
+                "Your Android download and installation guide, together in one place.",
+                "आपका Android डाउनलोड और इंस्टॉल गाइड, एक ही जगह।",
+              )}
+            </p>
+            <div className="mt-6 w-full rounded-lg bg-background p-2 sm:mt-7 sm:inline-block sm:w-auto">
+              <DownloadBtn placement="other" big />
+            </div>
+          </div>
+        </section>
       </main>
       <SiteFooter />
+      <WhatsAppSupport floating />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-name: Deploy Raja567 Guides to Cloudflare Pages
+name: Deploy Raja567 App Download to Cloudflare Pages
 
 on:
   push:
@@ -9,7 +9,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: cloudflare-pages-raja567-guides
+  group: cloudflare-pages-raja567-download
   cancel-in-progress: false
 
 jobs:
@@ -43,4 +43,4 @@ jobs:
         run: |
           test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "Missing repository variable CLOUDFLARE_ACCOUNT_ID"; exit 1; }
           test -n "$CLOUDFLARE_API_TOKEN" || { echo "Missing repository secret CLOUDFLARE_API_TOKEN"; exit 1; }
-          npx wrangler pages deploy dist --project-name raja567-guides --branch variant/non-gambling --commit-hash "$GITHUB_SHA"
+          npx wrangler pages deploy dist --project-name raja567-download --branch variant/non-gambling --commit-hash "$GITHUB_SHA"

@@ -1,8 +1,8 @@
 # Cloudflare Pages deployment
 
-This branch (`variant/non-gambling`) contains the Raja567 informational variant. The original Raja567 site remains on `raja-567`; the Sona777 site remains on `main`.
+This branch (`variant/non-gambling`) contains the Raja567 app download variant. The original Raja567 site remains on `raja-567`. The Sona777 app download variant is preserved on `variant/sona-non-gambling`.
 
-The informational variant includes the homepage and English/Hindi digital guides. Legacy chart, download and article URLs return 404. It has no result-provider requests, APK links, WhatsApp destination or Meta Pixel.
+This variant includes an app download landing page and `/download` with English/Hindi APK installation guidance. Charts and article URLs return 404. The homepage uses Raja567 brand artwork. There are no live result-provider requests or Meta Pixel. The existing Raja567 APK URL is centralized in `src/lib/data.ts` and used only by the download page; changing the landing page does not change the app itself. WhatsApp installation support uses the existing Raja567 contact, centralized in `WHATSAPP_SUPPORT_URL`.
 
 ## Local verification
 
@@ -18,14 +18,14 @@ Open `http://localhost:4174`. Deploy the complete `dist` directory, including `_
 
 ## Separate deployment target
 
-This branch targets the separate Cloudflare Pages project `raja567-guides`. Before the first deployment, create a Direct Upload project with production branch `variant/non-gambling`:
+This branch targets the separate Cloudflare Pages project `raja567-download`, hosted at https://raja567-download.pages.dev. Before the first deployment, create a Direct Upload project with production branch `variant/non-gambling`:
 
 ```sh
 npx wrangler login
-npx wrangler pages project create raja567-guides --production-branch variant/non-gambling
+npx wrangler pages project create raja567-download --production-branch variant/non-gambling
 ```
 
-The GitHub Actions workflow runs for this branch and uses repository variable `CLOUDFLARE_ACCOUNT_ID` and secret `CLOUDFLARE_API_TOKEN`. The token needs Cloudflare Pages edit access to the target project. Existing brand deployment targets are unchanged on their branches.
+The GitHub Actions workflow runs for this branch and uses repository variable `CLOUDFLARE_ACCOUNT_ID` and secret `CLOUDFLARE_API_TOKEN`. The token needs Cloudflare Pages edit access to the target project. Existing Sona777 and Raja567 deployment targets are unchanged on their branches.
 
 For a manual deployment after setup:
 
@@ -33,11 +33,12 @@ For a manual deployment after setup:
 npm run deploy:pages
 ```
 
-No deployment or remote project creation is performed by local verification. Retained conversion callback infrastructure is documented in [CONVERSION_TRACKING.md](./CONVERSION_TRACKING.md); the informational pages do not emit download or app conversion events.
+No deployment or remote project creation is performed by local verification. Retained conversion callback infrastructure is documented in [CONVERSION_TRACKING.md](./CONVERSION_TRACKING.md); CTA references are recorded before navigation and reused for APK attempts. Supabase tracking is optional; provide `RAJA567_VITE_SUPABASE_URL` and `RAJA567_VITE_SUPABASE_PUBLISHABLE_KEY` repository variables to enable it. The download page offers the installation reference for explicit transfer to the app.
 
 ## Verify after deployment
 
-- Open `/`, `/blog` and each guide, then switch between English and Hindi.
-- Refresh a guide and confirm the selected language persists after hydration.
-- Confirm `/charts`, `/download` and retired article URLs return 404.
+- Open `/` and `/download`, then switch between English and Hindi.
+- Refresh the page and confirm the selected language persists after hydration.
+- Confirm `/charts`, `/blog` and retired article URLs return 404.
+- Check CTA placement tracking and the APK target on `/download`.
 - Check metadata and outbound links for the informational content.

@@ -1,6 +1,6 @@
-# Raja567 informational variant
+# Raja567 app download variant
 
-Branch: `variant/non-gambling`. A standalone informational website with English/Hindi digital guides and Raja567 branding. The original site is preserved on `raja-567`.
+Branch: `variant/non-gambling`. An Android app download landing page with Raja567 branding, English/Hindi installation instructions, and Raja567 brand artwork. Live results, charts and gambling articles are removed. The original site is preserved on `raja-567`.
 
 ## Development
 

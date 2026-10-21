@@ -78,18 +78,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   head: () => ({
     meta: [
       { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
       { title: "Raja567" },
       {
         name: "description",
-        content: "Practical guides for everyday digital life in English and Hindi.",
+        content:
+          "Download Raja567 for Android with installation instructions in English and Hindi.",
       },
       { name: "author", content: "Raja567" },
       { name: "theme-color", content: "#960024" },
       { property: "og:title", content: "Raja567" },
       {
         property: "og:description",
-        content: "Practical guides for everyday digital life in English and Hindi.",
+        content:
+          "Download Raja567 for Android with installation instructions in English and Hindi.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
