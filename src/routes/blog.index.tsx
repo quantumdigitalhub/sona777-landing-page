@@ -1,33 +1,52 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader, SiteFooter } from "@/components/SiteHeader";
 import { posts } from "@/lib/data";
+import { useLanguage } from "@/lib/language";
 
 export const Route = createFileRoute("/blog/")({
   head: () => ({
     meta: [
-      { title: "Matka Blog – Matka History, Charts & Guides | Raja567" },
-      { name: "description", content: "Read about matka history, Kalyan and Main Bazar markets, and how to read jodi and panel charts." },
-      { property: "og:title", content: "Matka Blog – Raja567" },
-      { property: "og:description", content: "Matka history, market guides and chart tips." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
+      { title: "Digital Guides | Raja567" },
+      {
+        name: "description",
+        content:
+          "Practical ideas for organizing digital files, managing notifications and reading thoughtfully online. Available in English and Hindi.",
+      },
+      { property: "og:title", content: "Digital Guides | Raja567" },
+      {
+        property: "og:description",
+        content: "Practical guides for everyday digital life in English and Hindi.",
+      },
     ],
   }),
   component: BlogList,
 });
 
 function BlogList() {
+  const { t } = useLanguage();
   return (
     <div className="min-h-screen">
       <SiteHeader />
-      <main className="mx-auto max-w-3xl px-4 py-8">
-        <h1 className="mb-6 font-display text-3xl">Matka Blog</h1>
-        <div className="divide-y rounded-md border bg-card">
-          {posts.map((p) => (
-            <Link key={p.slug} to="/blog/$slug" params={{ slug: p.slug }} className="block p-4 hover:bg-muted">
-              <div className="text-xs text-muted-foreground">{p.date}</div>
-              <h2 className="font-bold">{p.title}</h2>
-              <p className="text-sm text-muted-foreground">{p.description}</p>
+      <main className="mx-auto max-w-3xl px-4 py-12">
+        <h1 className="font-display text-4xl">{t("Digital guides", "डिजिटल गाइड")}</h1>
+        <p className="mt-3 text-muted-foreground">
+          {t(
+            "Small steps for a more thoughtful digital routine.",
+            "बेहतर डिजिटल दिनचर्या के लिए छोटे कदम।",
+          )}
+        </p>
+        <div className="mt-8 divide-y rounded-md border bg-card">
+          {posts.map((post) => (
+            <Link
+              key={post.slug}
+              to="/blog/$slug"
+              params={{ slug: post.slug }}
+              className="block p-6 hover:bg-muted"
+            >
+              <h2 className="text-lg font-bold">{t(post.title, post.titleHi)}</h2>
+              <p className="mt-2 text-sm text-muted-foreground">
+                {t(post.description, post.descriptionHi)}
+              </p>
             </Link>
           ))}
         </div>

@@ -1,76 +1,90 @@
-import { Link, useLocation } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import { useState } from "react";
+import { Menu, X } from "lucide-react";
 import { useLanguage } from "@/lib/language";
-import { trackDownload } from "@/lib/track";
 import { Button } from "@/components/ui/button";
-import { Download, Menu, X } from "lucide-react";
 import horizontalLogo from "@/assets/raja567-horizontal.png";
-import verticalLogo from "@/assets/raja567-stacked.png";
-
-export function DownloadBtn({ big = false }: { big?: boolean }) {
-  const { t } = useLanguage();
-  return (
-    <Button asChild className={`shadow-none font-bold ${big ? "h-12 px-8 text-base" : "h-10 px-4 text-sm"}`}>
-    <Link
-      to="/download"
-      onClick={() => trackDownload(big ? "hero" : "header")}
-    >
-      <Download aria-hidden /> {t("Download App", "ऐप डाउनलोड करें")}
-    </Link>
-    </Button>
-  );
-}
-
-const links = [
-  { to: "/charts", label: "Market Charts" },
-  { to: "/", label: "Today's Results" },
-  { to: "/blog", label: "Matka Blog" },
-] as const;
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
-  const label = (value: string) => value === "Market Charts" ? t(value, "मार्केट चार्ट") : value === "Today's Results" ? t(value, "आज के परिणाम") : t(value, "मटका ब्लॉग");
+  const links = [
+    { to: "/", label: t("Home", "होम") },
+    { to: "/blog", label: t("Digital guides", "डिजिटल गाइड") },
+  ] as const;
+
   return (
     <header className="sticky top-0 z-20 border-b border-gold/30 bg-background/95 backdrop-blur-md">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-3 py-3 sm:px-4">
-        <div className="flex min-w-0 items-center gap-2 sm:gap-3">
+      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3">
+        <Link to="/" aria-label={t("Raja567 home", "Raja567 होम")}>
+          <img
+            src={horizontalLogo}
+            alt="Raja567"
+            width={2172}
+            height={724}
+            className="h-auto w-32 sm:w-44"
+          />
+        </Link>
+        <nav
+          aria-label={t("Main navigation", "मुख्य नेविगेशन")}
+          className="hidden gap-6 text-sm font-semibold md:flex"
+        >
+          {links.map(({ to, label }) => (
+            <Link key={to} to={to} className="hover:text-primary">
+              {label}
+            </Link>
+          ))}
+        </nav>
+        <div className="flex items-center gap-2">
+          <div role="group" aria-label="Language / भाषा" className="inline-flex gap-1">
+            <Button
+              size="sm"
+              variant={language === "en" ? "default" : "ghost"}
+              aria-pressed={language === "en"}
+              onClick={() => setLanguage("en")}
+              className="shadow-none"
+            >
+              English
+            </Button>
+            <Button
+              size="sm"
+              variant={language === "hi" ? "default" : "ghost"}
+              aria-pressed={language === "hi"}
+              onClick={() => setLanguage("hi")}
+              className="shadow-none"
+            >
+              हिन्दी
+            </Button>
+          </div>
           <Button
             variant="outline"
             size="icon"
-            aria-label={open ? "Close menu" : "Open menu"}
+            aria-label={open ? t("Close menu", "मेन्यू बंद करें") : t("Open menu", "मेन्यू खोलें")}
             aria-expanded={open}
+            aria-controls="mobile-navigation"
             onClick={() => setOpen(!open)}
-            className="shrink-0 shadow-none"
+            className="shadow-none md:hidden"
           >
             {open ? <X /> : <Menu />}
           </Button>
-          <Link to="/" aria-label="Raja567 home" className="block min-w-0 shrink">
-            <img src={horizontalLogo} alt="Raja567" width={2172} height={724} className="h-auto w-32 max-w-full sm:w-44" />
-          </Link>
-        </div>
-        <nav className="hidden gap-6 text-sm font-semibold md:flex">
-          {links.map((l) => (
-            <Link key={l.label} to={l.to} className="hover:text-primary">{label(l.label)}</Link>
-          ))}
-        </nav>
-        <DownloadBtn />
-      </div>
-      <div className="mx-auto flex max-w-6xl justify-end px-3 pb-2 sm:px-4">
-        <div role="group" aria-label="Language / भाषा" className="inline-flex gap-1">
-          <Button size="sm" variant={language === "en" ? "default" : "ghost"} aria-pressed={language === "en"} onClick={() => setLanguage("en")} className="h-7 shadow-none">English</Button>
-          <Button size="sm" variant={language === "hi" ? "default" : "ghost"} aria-pressed={language === "hi"} onClick={() => setLanguage("hi")} className="h-7 shadow-none">हिन्दी</Button>
         </div>
       </div>
       {open && (
-        <nav className="border-t bg-background">
-          <div className="mx-auto max-w-6xl px-4 py-2">
-            {links.map((l) => (
-              <Link key={l.label} to={l.to} onClick={() => setOpen(false)} className="block border-b py-3 font-semibold last:border-0 hover:text-primary">
-                {label(l.label)}
-              </Link>
-            ))}
-          </div>
+        <nav
+          id="mobile-navigation"
+          aria-label={t("Mobile navigation", "मोबाइल नेविगेशन")}
+          className="border-t bg-background px-4 md:hidden"
+        >
+          {links.map(({ to, label }) => (
+            <Link
+              key={to}
+              to={to}
+              onClick={() => setOpen(false)}
+              className="block border-b py-3 font-semibold last:border-0 hover:text-primary"
+            >
+              {label}
+            </Link>
+          ))}
         </nav>
       )}
     </header>
@@ -79,19 +93,18 @@ export function SiteHeader() {
 
 export function SiteFooter() {
   const { t } = useLanguage();
-  const onDownloadPage = useLocation().pathname === "/download";
   return (
-    <>
-      <footer className="border-t border-gold/30 bg-muted px-4 py-10 text-center text-xs text-muted-foreground">
-        <Link to="/" aria-label="Raja567 home" className="mx-auto mb-5 block w-28">
-          <img src={verticalLogo} alt="Raja567" width={1236} height={1273} loading="lazy" className="h-auto w-full" />
-        </Link>
-        <p>© 2026 Raja567. For 18+ only..</p>
-      </footer>
-      {!onDownloadPage && <><div className="h-16 md:hidden" />
-      <div className="fixed inset-x-0 bottom-0 z-30 border-t bg-background p-3 md:hidden">
-        <Button asChild className="h-12 w-full shadow-none"><Link to="/download" onClick={() => trackDownload("sticky_mobile")}><Download />{t("Download App – Free", "ऐप डाउनलोड करें – मुफ़्त")}</Link></Button>
-      </div></>}
-    </>
+    <footer className="border-t border-gold/30 bg-muted px-4 py-10 text-center text-sm text-muted-foreground">
+      <Link to="/" className="font-bold text-primary">
+        Raja567
+      </Link>
+      <p className="mt-2">
+        {t(
+          "Practical guides for everyday digital life.",
+          "रोज़मर्रा की डिजिटल ज़िंदगी के लिए उपयोगी गाइड।",
+        )}
+      </p>
+      <p className="mt-4 text-xs">© 2026 Raja567.</p>
+    </footer>
   );
 }

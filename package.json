@@ -9,7 +9,7 @@
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "preview:pages": "wrangler pages dev --port 4174",
-    "deploy:pages": "npm run build && wrangler pages deploy dist --project-name raja567-landing --branch raja-567",
+    "deploy:pages": "npm run build && wrangler pages deploy dist --project-name raja567-guides --branch variant/non-gambling",
     "lint": "eslint .",
     "format": "prettier --write .",
     "test": "vitest run",

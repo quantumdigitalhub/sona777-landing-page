@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { SiteHeader, SiteFooter, DownloadBtn } from "@/components/SiteHeader";
+import { SiteHeader, SiteFooter } from "@/components/SiteHeader";
 import { posts } from "@/lib/data";
+import { useLanguage } from "@/lib/language";
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
@@ -9,7 +10,8 @@ export const Route = createFileRoute("/blog/$slug")({
     return { post };
   },
   head: ({ loaderData }) => {
-    if (!loaderData) return { meta: [{ title: "Not found" }, { name: "robots", content: "noindex" }] };
+    if (!loaderData)
+      return { meta: [{ title: "Not found" }, { name: "robots", content: "noindex" }] };
     const { post } = loaderData;
     return {
       meta: [
@@ -20,30 +22,49 @@ export const Route = createFileRoute("/blog/$slug")({
         { property: "og:type", content: "article" },
         { name: "twitter:card", content: "summary" },
       ],
-      scripts: [{
-        type: "application/ld+json",
-        children: JSON.stringify({ "@context": "https://schema.org", "@type": "Article", headline: post.title, datePublished: post.date }),
-      }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: post.title,
+          }),
+        },
+      ],
     };
   },
-  notFoundComponent: () => <div className="p-10 text-center">Post not found. <Link to="/blog" className="text-primary underline">Blog</Link></div>,
+  notFoundComponent: () => (
+    <div className="p-10 text-center">
+      Post not found.{" "}
+      <Link to="/blog" className="text-primary underline">
+        Blog
+      </Link>
+    </div>
+  ),
   component: PostPage,
 });
 
 function PostPage() {
   const { post } = Route.useLoaderData();
+  const { language, t } = useLanguage();
   return (
     <div className="min-h-screen">
       <SiteHeader />
       <main className="mx-auto max-w-2xl px-4 py-8">
-        <Link to="/blog" className="text-sm font-semibold text-muted-foreground">← Blog</Link>
-        <h1 className="mt-2 font-display text-3xl">{post.title}</h1>
-        <p className="mb-6 text-xs text-muted-foreground">{post.date}</p>
-        {post.body.map((p, i) => <p key={i} className="mb-4 leading-relaxed">{p}</p>)}
-        <div className="mt-8 flex flex-wrap gap-3 rounded-md border p-4">
-          <DownloadBtn />
-          <Link to="/charts" className="rounded-md border px-5 py-3 font-bold">View Charts</Link>
-        </div>
+        <Link to="/blog" className="text-sm font-semibold text-muted-foreground">
+          {t("← All guides", "← सभी गाइड")}
+        </Link>
+        <h1 className="mt-2 font-display text-3xl">{t(post.title, post.titleHi)}</h1>
+        <p className="my-6 text-muted-foreground">{t(post.description, post.descriptionHi)}</p>
+        {(language === "hi" ? post.bodyHi : post.body).map((p, i) => (
+          <p key={i} className="mb-4 leading-relaxed">
+            {p}
+          </p>
+        ))}
+        <Link to="/blog" className="mt-8 inline-block font-semibold text-primary underline">
+          {t("Explore more guides →", "और गाइड पढ़ें →")}
+        </Link>
       </main>
       <SiteFooter />
     </div>

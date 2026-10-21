@@ -10,21 +10,13 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as DownloadRouteImport } from './routes/download'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
-import { Route as ChartsIndexRouteImport } from './routes/charts.index'
-import { Route as ChartsSlugRouteImport } from './routes/charts.$slug'
 import { Route as ApiPublicConversionsRouteImport } from './routes/api/public/conversions'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DownloadRoute = DownloadRouteImport.update({
-  id: '/download',
-  path: '/download',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
@@ -37,16 +29,6 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
   path: '/blog/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ChartsIndexRoute = ChartsIndexRouteImport.update({
-  id: '/charts/',
-  path: '/charts/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ChartsSlugRoute = ChartsSlugRouteImport.update({
-  id: '/charts/$slug',
-  path: '/charts/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ApiPublicConversionsRoute = ApiPublicConversionsRouteImport.update({
   id: '/api/public/conversions',
   path: '/api/public/conversions',
@@ -55,69 +37,35 @@ const ApiPublicConversionsRoute = ApiPublicConversionsRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/download': typeof DownloadRoute
   '/blog/$slug': typeof BlogSlugRoute
-  '/charts/$slug': typeof ChartsSlugRoute
   '/blog/': typeof BlogIndexRoute
-  '/charts/': typeof ChartsIndexRoute
   '/api/public/conversions': typeof ApiPublicConversionsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/download': typeof DownloadRoute
   '/blog/$slug': typeof BlogSlugRoute
-  '/charts/$slug': typeof ChartsSlugRoute
   '/blog': typeof BlogIndexRoute
-  '/charts': typeof ChartsIndexRoute
   '/api/public/conversions': typeof ApiPublicConversionsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/download': typeof DownloadRoute
   '/blog/$slug': typeof BlogSlugRoute
-  '/charts/$slug': typeof ChartsSlugRoute
   '/blog/': typeof BlogIndexRoute
-  '/charts/': typeof ChartsIndexRoute
   '/api/public/conversions': typeof ApiPublicConversionsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/download'
-    | '/blog/$slug'
-    | '/charts/$slug'
-    | '/blog/'
-    | '/charts/'
-    | '/api/public/conversions'
+  fullPaths: '/' | '/blog/$slug' | '/blog/' | '/api/public/conversions'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/download'
-    | '/blog/$slug'
-    | '/charts/$slug'
-    | '/blog'
-    | '/charts'
-    | '/api/public/conversions'
-  id:
-    | '__root__'
-    | '/'
-    | '/download'
-    | '/blog/$slug'
-    | '/charts/$slug'
-    | '/blog/'
-    | '/charts/'
-    | '/api/public/conversions'
+  to: '/' | '/blog/$slug' | '/blog' | '/api/public/conversions'
+  id: '__root__' | '/' | '/blog/$slug' | '/blog/' | '/api/public/conversions'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  DownloadRoute: typeof DownloadRoute
   BlogSlugRoute: typeof BlogSlugRoute
-  ChartsSlugRoute: typeof ChartsSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
-  ChartsIndexRoute: typeof ChartsIndexRoute
   ApiPublicConversionsRoute: typeof ApiPublicConversionsRoute
 }
 
@@ -128,13 +76,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/download': {
-      id: '/download'
-      path: '/download'
-      fullPath: '/download'
-      preLoaderRoute: typeof DownloadRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/': {
@@ -151,20 +92,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/charts/': {
-      id: '/charts/'
-      path: '/charts'
-      fullPath: '/charts/'
-      preLoaderRoute: typeof ChartsIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/charts/$slug': {
-      id: '/charts/$slug'
-      path: '/charts/$slug'
-      fullPath: '/charts/$slug'
-      preLoaderRoute: typeof ChartsSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/api/public/conversions': {
       id: '/api/public/conversions'
       path: '/api/public/conversions'
@@ -177,11 +104,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  DownloadRoute: DownloadRoute,
   BlogSlugRoute: BlogSlugRoute,
-  ChartsSlugRoute: ChartsSlugRoute,
   BlogIndexRoute: BlogIndexRoute,
-  ChartsIndexRoute: ChartsIndexRoute,
   ApiPublicConversionsRoute: ApiPublicConversionsRoute,
 }
 export const routeTree = rootRouteImport

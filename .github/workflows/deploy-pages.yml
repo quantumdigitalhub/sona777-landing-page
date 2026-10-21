@@ -1,20 +1,20 @@
-name: Deploy Raja 567 to Cloudflare Pages
+name: Deploy Raja567 Guides to Cloudflare Pages
 
 on:
   push:
-    branches: [raja-567]
+    branches: [variant/non-gambling]
   workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: cloudflare-pages-raja567-production
+  group: cloudflare-pages-raja567-guides
   cancel-in-progress: false
 
 jobs:
   deploy:
-    if: github.ref == 'refs/heads/raja-567'
+    if: github.ref == 'refs/heads/variant/non-gambling'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -43,4 +43,4 @@ jobs:
         run: |
           test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "Missing repository variable CLOUDFLARE_ACCOUNT_ID"; exit 1; }
           test -n "$CLOUDFLARE_API_TOKEN" || { echo "Missing repository secret CLOUDFLARE_API_TOKEN"; exit 1; }
-          npx wrangler pages deploy dist --project-name raja567-landing --branch raja-567 --commit-hash "$GITHUB_SHA"
+          npx wrangler pages deploy dist --project-name raja567-guides --branch variant/non-gambling --commit-hash "$GITHUB_SHA"
