@@ -2,7 +2,7 @@
 
 This branch (`variant/sona-non-gambling`) contains the Sona777 app download variant. The original Sona777 site remains on `main`. The Raja567 informational variant is preserved on `variant/non-gambling`.
 
-This variant includes an app download landing page and `/download` with English/Hindi APK installation guidance. Charts and article URLs return 404. The homepage includes the supplied app screenshot as a preview. There are no live result-provider requests or Meta Pixel. The existing Sona777 APK URL is centralized in `src/lib/data.ts` and used only by the download page; changing the landing page does not change the app itself. WhatsApp support shows an unavailable message until a contact is configured.
+This variant includes an app download landing page and `/download` with English/Hindi APK installation guidance. Charts and article URLs return 404. The homepage includes the supplied app screenshot as a preview. There are no live result-provider requests. Meta Pixel `903377856077201` records `PageView` through the shared document shell, with a noscript image fallback. The existing Sona777 APK URL is centralized in `src/lib/data.ts` and used only by the download page; changing the landing page does not change the app itself. WhatsApp support shows an unavailable message until a contact is configured.
 
 ## Local verification
 
