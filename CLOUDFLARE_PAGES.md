@@ -2,7 +2,7 @@
 
 This branch (`variant/megha777-download`) contains the Megha 777 app download site. Sona777 and Raja567 remain on their existing branches and Cloudflare projects.
 
-The homepage uses original SVG logos and a violet theme. `/download` provides English/Hindi installation guidance and the supplied Android download URL. All download calls to action route through `/download`. No Meta Pixel or WhatsApp contact has been supplied for this app; support controls show an explicit unavailable state. No live result feed or app screenshot is presented.
+The homepage uses original SVG logos and a violet theme. `/download` provides English/Hindi installation guidance and the supplied Android download URL. All download calls to action route through `/download`. Meta Pixel `1090370266939482` records `PageView` through the shared document shell, including a noscript image fallback. No WhatsApp contact has been supplied; support controls show an explicit unavailable state. No live result feed or app screenshot is presented.
 
 ## Local verification
 
