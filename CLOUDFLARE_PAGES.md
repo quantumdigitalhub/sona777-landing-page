@@ -2,9 +2,9 @@
 
 This branch (`variant/sona-compact`) contains an alternative Sona777 app download design. The published full page remains on `variant/sona-non-gambling`. The original Sona777 site remains on `main`. The Raja567 informational variant is preserved on `variant/non-gambling`.
 
-This variant includes an app download landing page and `/download` with English/Hindi APK installation guidance. Charts and article URLs return 404. The homepage has a flat layout with one main CTA and the supplied screenshot inside a phone frame on mobile and desktop. There are no live result-provider requests. Meta Pixel `903377856077201` records `PageView` through the shared document shell, with a noscript image fallback. The existing Sona777 APK URL is centralized in `src/lib/data.ts` and used only by the download page; changing the landing page does not change the app itself. WhatsApp support shows an unavailable message until a contact is configured.
+This variant includes an app download landing page and `/download` with English/Hindi APK installation guidance. Charts and article URLs return 404. The homepage has a flat layout with one main CTA and the supplied screenshot inside a phone frame on mobile and desktop. There are no live result-provider requests. Meta Pixel `1799113671400355` records `PageView` through the shared document shell, with a noscript image fallback. The existing Sona777 APK URL is centralized in `src/lib/data.ts` and used only by the download page; changing the landing page does not change the app itself. WhatsApp support shows an unavailable message until a contact is configured.
 
-This variant is saved locally for review and has not been deployed. The setup commands below target a separate Pages project.
+This branch deploys to the separate `sona777-compact` Pages project at https://sona777-compact.pages.dev. The original Sona download page uses its own project and Pixel.
 
 ## Local verification
 

@@ -1,6 +1,6 @@
 # Sona777 compact download variant
 
-Branch: `variant/sona-compact`. A flat Sona777 landing page with a spacious hero, a framed app screenshot on mobile and desktop, one main Play Now button, and English/Hindi selection. Live results, charts and gambling articles are removed. The original landing page remains on `variant/sona-non-gambling`. This variant is prepared locally for review.
+Branch: `variant/sona-compact`. A flat Sona777 landing page with a spacious hero, a framed app screenshot on mobile and desktop, one main Play Now button, and English/Hindi selection. Live results, charts and gambling articles are removed. The original landing page remains on `variant/sona-non-gambling`. This variant deploys separately to https://sona777-compact.pages.dev.
 
 ## Development
 
