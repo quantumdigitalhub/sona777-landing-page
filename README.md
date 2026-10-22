@@ -1,6 +1,6 @@
-# Sona777 app download variant
+# Sona777 compact download variant
 
-Branch: `variant/sona-non-gambling`. An Android app download landing page with Sona777 branding, English/Hindi installation instructions, and the supplied app preview image. Live results, charts and gambling articles are removed. The original site is preserved on `main`.
+Branch: `variant/sona-compact`. A compact Sona777 download page with a dark card, one main Play Now button, English/Hindi selection, and a desktop app preview. Live results, charts and gambling articles are removed. The original landing page remains on `variant/sona-non-gambling`. This variant is prepared locally for review.
 
 ## Development
 

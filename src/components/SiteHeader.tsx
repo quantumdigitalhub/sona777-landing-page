@@ -32,7 +32,7 @@ export function DownloadBtn({
   );
 }
 
-export function SiteHeader() {
+export function SiteHeader({ compact = false }: { compact?: boolean }) {
   const [open, setOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
   const links = [
@@ -58,7 +58,7 @@ export function SiteHeader() {
         </Link>
         <nav
           aria-label={t("Main navigation", "मुख्य नेविगेशन")}
-          className="hidden gap-6 text-sm font-semibold md:flex"
+          className={compact ? "hidden" : "hidden gap-6 text-sm font-semibold md:flex"}
         >
           {links.map(({ to, label }) => (
             <Link key={to} to={to} className="inline-flex min-h-11 items-center hover:text-primary">
@@ -96,16 +96,16 @@ export function SiteHeader() {
             aria-expanded={open}
             aria-controls="mobile-navigation"
             onClick={() => setOpen(!open)}
-            className="size-11 shadow-none md:hidden"
+            className={compact ? "hidden" : "size-11 shadow-none md:hidden"}
           >
             {open ? <X /> : <Menu />}
           </Button>
-          <div className="hidden md:block">
+          <div className={compact ? "hidden" : "hidden md:block"}>
             <DownloadBtn />
           </div>
         </div>
       </div>
-      {open && (
+      {open && !compact && (
         <nav
           id="mobile-navigation"
           aria-label={t("Mobile navigation", "मोबाइल नेविगेशन")}
@@ -127,9 +127,15 @@ export function SiteHeader() {
   );
 }
 
-export function SiteFooter() {
+export function SiteFooter({ compact = false }: { compact?: boolean }) {
   const { t } = useLanguage();
   const onDownloadPage = useLocation().pathname === "/download";
+  if (compact)
+    return (
+      <footer className="px-4 pb-[max(1.25rem,env(safe-area-inset-bottom))] pt-2 text-center text-xs text-muted-foreground">
+        © 2026 Sona 777.
+      </footer>
+    );
   return (
     <>
       <footer className="border-t border-primary/20 bg-muted px-4 py-8 text-center text-sm leading-relaxed text-muted-foreground sm:py-10">

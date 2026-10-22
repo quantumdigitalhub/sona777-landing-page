@@ -1,8 +1,10 @@
 # Cloudflare Pages deployment
 
-This branch (`variant/sona-non-gambling`) contains the Sona777 app download variant. The original Sona777 site remains on `main`. The Raja567 informational variant is preserved on `variant/non-gambling`.
+This branch (`variant/sona-compact`) contains a compact Sona777 app download variant. The published full page remains on `variant/sona-non-gambling`. The original Sona777 site remains on `main`. The Raja567 informational variant is preserved on `variant/non-gambling`.
 
-This variant includes an app download landing page and `/download` with English/Hindi APK installation guidance. Charts and article URLs return 404. The homepage includes the supplied app screenshot as a preview. There are no live result-provider requests. Meta Pixel `903377856077201` records `PageView` through the shared document shell, with a noscript image fallback. The existing Sona777 APK URL is centralized in `src/lib/data.ts` and used only by the download page; changing the landing page does not change the app itself. WhatsApp support shows an unavailable message until a contact is configured.
+This variant includes an app download landing page and `/download` with English/Hindi APK installation guidance. Charts and article URLs return 404. The homepage uses a compact dark card with one main CTA and the supplied screenshot as a desktop preview. There are no live result-provider requests. Meta Pixel `903377856077201` records `PageView` through the shared document shell, with a noscript image fallback. The existing Sona777 APK URL is centralized in `src/lib/data.ts` and used only by the download page; changing the landing page does not change the app itself. WhatsApp support shows an unavailable message until a contact is configured.
+
+This variant is saved locally for review and has not been deployed. The setup commands below target a separate Pages project.
 
 ## Local verification
 
@@ -18,11 +20,11 @@ Open `http://localhost:4174`. Deploy the complete `dist` directory, including `_
 
 ## Separate deployment target
 
-This branch targets the separate Cloudflare Pages project `sona777-download`, hosted at https://sona777-download.pages.dev. Before the first deployment, create a Direct Upload project with production branch `variant/sona-non-gambling`:
+This branch targets the separate Cloudflare Pages project `sona777-compact`, hosted at https://sona777-compact.pages.dev. Before the first deployment, create a Direct Upload project with production branch `variant/sona-compact`:
 
 ```sh
 npx wrangler login
-npx wrangler pages project create sona777-download --production-branch variant/sona-non-gambling
+npx wrangler pages project create sona777-compact --production-branch variant/sona-compact
 ```
 
 The GitHub Actions workflow runs for this branch and uses repository variable `CLOUDFLARE_ACCOUNT_ID` and secret `CLOUDFLARE_API_TOKEN`. The token needs Cloudflare Pages edit access to the target project. Existing Sona777 and Raja567 deployment targets are unchanged on their branches.

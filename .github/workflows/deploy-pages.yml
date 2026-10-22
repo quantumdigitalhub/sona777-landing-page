@@ -1,20 +1,20 @@
-name: Deploy Sona777 App Download to Cloudflare Pages
+name: Deploy Sona777 Compact Download to Cloudflare Pages
 
 on:
   push:
-    branches: [variant/sona-non-gambling]
+    branches: [variant/sona-compact]
   workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: cloudflare-pages-sona777-download
+  group: cloudflare-pages-sona777-compact
   cancel-in-progress: false
 
 jobs:
   deploy:
-    if: github.ref == 'refs/heads/variant/sona-non-gambling'
+    if: github.ref == 'refs/heads/variant/sona-compact'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -43,4 +43,4 @@ jobs:
         run: |
           test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "Missing repository variable CLOUDFLARE_ACCOUNT_ID"; exit 1; }
           test -n "$CLOUDFLARE_API_TOKEN" || { echo "Missing repository secret CLOUDFLARE_API_TOKEN"; exit 1; }
-          npx wrangler pages deploy dist --project-name sona777-download --branch variant/sona-non-gambling --commit-hash "$GITHUB_SHA"
+          npx wrangler pages deploy dist --project-name sona777-compact --branch variant/sona-compact --commit-hash "$GITHUB_SHA"
