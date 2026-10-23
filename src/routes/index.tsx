@@ -76,7 +76,7 @@ function Index() {
                 {t("Sona 777.", "Sona 777।")}
                 <br />
                 <span className="text-primary">
-                  {t("One download away.", "बस एक डाउनलोड दूर।")}
+                  {t("Online Mtka Play App", "बस एक डाउनलोड दूर।")}
                 </span>
               </h1>
               <p className="mx-auto mt-4 max-w-md text-base sm:mt-5 sm:text-lg leading-relaxed text-muted-foreground md:mx-0">
