@@ -11,7 +11,7 @@
 
 - Use the shared MarketCard for homepage market results and provider chart links, so market presentation and chart destinations stay consistent.
 - Keep language selection in the shared LanguageProvider and persist it after hydration, so navigation preserves the choice without SSR mismatches.
-- Route app-download calls to action to /download; only that page uses APK_URL for the actual file, so installation guidance and missing-file states remain consistent.
+- Route app-download calls to action directly to APK_URL through the shared DownloadBtn, with click attribution recorded before APK attempt tracking and an explicit unavailable state when the URL is missing. Keep /download available for installation guidance.
 - Use the shared WhatsAppSupport control with WHATSAPP_SUPPORT_URL for both placements; missing contacts show an explicit unavailable message instead of opening an invented chat.
 - Keep the result API base in RESULTS_BASE_URL, resolve feed paths relative to it and chart paths against its origin, and load public feeds through the shared server function and Query cache; this prevents duplicated API prefixes and keeps domain changes centralized without browser CORS failures.
 - Show explicit unavailable states rather than dummy results when provider requests or schema validation fail; this prevents invented numbers from being presented as live results.

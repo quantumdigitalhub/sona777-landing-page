@@ -1,14 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import {
-  ArrowRight,
-  Download,
-  FileDown,
-  FolderOpen,
-  Languages,
-  Smartphone,
-  Check,
-} from "lucide-react";
-import appPreview from "@/assets/sona-app-preview.png";
+import { ArrowRight, Check, Download, Languages, Smartphone } from "lucide-react";
+import heroArtwork from "@/assets/sona_header.png";
 import { SiteHeader, SiteFooter, DownloadBtn } from "@/components/SiteHeader";
 import { WhatsAppSupport } from "@/components/WhatsAppSupport";
 import { useLanguage } from "@/lib/language";
@@ -37,15 +29,13 @@ function Index() {
   const { t } = useLanguage();
   const steps = [
     {
-      icon: Download,
       title: t("Download", "डाउनलोड करें"),
       body: t(
-        "Open the download page to download the Android app.",
-        "Android ऐप डाउनलोड करने के लिए डाउनलोड पेज खोलें।",
+        "Tap Download App to get the Android app directly.",
+        "Android ऐप सीधे डाउनलोड करने के लिए ऐप डाउनलोड करें पर टैप करें।",
       ),
     },
     {
-      icon: FolderOpen,
       title: t("Install", "इंस्टॉल करें"),
       body: t(
         "Open the downloaded file and follow the installation guide.",
@@ -53,206 +43,206 @@ function Index() {
       ),
     },
     {
-      icon: Smartphone,
-      title: t("Open the app", "ऐप खोलें"),
+      title: t("Open Sona 777", "Sona 777 खोलें"),
       body: t(
-        "Once installation finishes, open Sona 777 from your phone.",
-        "इंस्टॉल होने के बाद अपने फ़ोन पर Sona 777 खोलें।",
+        "Once installation finishes, open the app from your phone.",
+        "इंस्टॉल होने के बाद अपने फ़ोन पर ऐप खोलें।",
       ),
     },
   ];
+  const questions = [
+    {
+      question: t("How do I download the app?", "ऐप कैसे डाउनलोड करूँ?"),
+      answer: t(
+        "Tap Download App to start the download directly. For help installing, open the installation guide.",
+        "सीधे डाउनलोड शुरू करने के लिए ऐप डाउनलोड करें पर टैप करें। इंस्टॉल करने में मदद के लिए इंस्टॉल गाइड खोलें।",
+      ),
+    },
+    {
+      question: t("Does it work on iPhone?", "क्या यह iPhone पर चलता है?"),
+      answer: t(
+        "This download is for Android phones. It cannot be installed on iPhone.",
+        "यह डाउनलोड Android फ़ोन के लिए है। इसे iPhone पर इंस्टॉल नहीं कर सकते।",
+      ),
+    },
+    {
+      question: t("Where is the downloaded file?", "डाउनलोड की गई फ़ाइल कहाँ है?"),
+      answer: t(
+        "Check Downloads in your browser or open the Downloads folder in your phone’s Files app.",
+        "ब्राउज़र में Downloads देखें या फ़ोन के Files ऐप में Downloads फ़ोल्डर खोलें।",
+      ),
+    },
+    {
+      question: t("Need help installing?", "इंस्टॉल करने में मदद चाहिए?"),
+      answer: t(
+        "The download page includes step-by-step instructions and answers to common installation questions in English and Hindi.",
+        "डाउनलोड पेज पर अंग्रेज़ी और हिन्दी में चरण-दर-चरण निर्देश और इंस्टॉल से जुड़े आम सवालों के जवाब हैं।",
+      ),
+    },
+  ];
+
   return (
     <div className="min-h-screen">
       <SiteHeader />
       <main>
-        <section className="overflow-hidden border-b border-primary/20 bg-linear-to-br from-background via-muted to-accent/50">
-          <div className="mx-auto grid max-w-6xl items-center gap-7 px-4 py-8 text-center sm:gap-12 sm:px-5 sm:py-14 md:grid-cols-2 md:py-20 md:text-left">
-            <div>
-              <p className="mb-4 inline-flex sm:mb-6 items-center gap-2 rounded-full border border-primary/20 bg-background px-4 py-2 text-xs font-bold uppercase tracking-widest text-primary">
-                <Smartphone aria-hidden className="size-4" />
-                {t("Available for Android", "Android के लिए उपलब्ध")}
-              </p>
-              <h1 className="font-display text-4xl leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-                {t("Sona 777.", "Sona 777।")}
-                <br />
-                <span className="text-primary">
-                  {t("Online Mtka Play App", "बस एक डाउनलोड दूर।")}
-                </span>
+        <section aria-labelledby="hero-title" className="sona-hero border-b border-amber-600/30">
+          <div className="mx-auto grid max-w-6xl items-center gap-x-12 px-4 pt-6 pb-5 text-center sm:px-5 sm:pt-8 md:grid-cols-2 md:grid-rows-[auto_auto] md:py-10 md:text-left">
+            <div className="md:col-start-1 md:row-start-1 md:self-end">
+              <h1
+                id="hero-title"
+                className="sona-hero-title font-display text-[clamp(3rem,12vw,4.5rem)] leading-none font-black italic tracking-tight uppercase md:text-[clamp(4rem,7vw,6.5rem)]"
+              >
+                Sona777
               </h1>
-              <p className="mx-auto mt-4 max-w-md text-base sm:mt-5 sm:text-lg leading-relaxed text-muted-foreground md:mx-0">
-                {t(
-                  "Get Sona 777 on your Android phone. Download the app and follow our simple, step-by-step installation guide.",
-                  "अपने Android फ़ोन पर Sona 777 पाएँ। ऐप डाउनलोड करें और इंस्टॉल करने के आसान निर्देशों का पालन करें।",
-                )}
-              </p>
-              <div className="mt-6 flex flex-col items-stretch justify-center gap-2 sm:mt-8 sm:flex-row sm:items-center sm:gap-5 md:justify-start">
-                <DownloadBtn placement="hero" big />
-                <a
-                  href="#installation"
-                  className="inline-flex min-h-11 items-center justify-center gap-2 text-sm font-semibold text-primary"
-                >
-                  {t("How to install", "इंस्टॉल कैसे करें")}
-                  <ArrowRight aria-hidden className="size-4" />
-                </a>
-              </div>
-              <p className="mt-3 text-xs sm:mt-4 text-muted-foreground">
-                {t(
-                  "Android app · Installation help in English & Hindi",
-                  "Android ऐप · इंस्टॉल करने में मदद अंग्रेज़ी और हिन्दी में",
-                )}
+              <p className="mt-2 font-display text-xl leading-tight italic sm:text-3xl">
+                {t("Your markets.", "आपके मार्केट।")}{" "}
+                <span className="text-primary">{t("Your game.", "आपका खेल।")}</span>
               </p>
             </div>
-            <figure className="mx-auto w-full max-w-64 sm:max-w-72 lg:max-w-80">
-              <div className="overflow-hidden rounded-[2rem] border-[6px] border-background bg-card shadow-xl shadow-primary/10 ring-1 ring-primary/15">
-                <img
-                  src={appPreview}
-                  alt={t("Sona 777 app home screen", "Sona 777 ऐप की होम स्क्रीन")}
-                  width={398}
-                  height={764}
-                  fetchPriority="high"
-                  className="block h-auto w-full"
-                />
-              </div>
-              <figcaption className="mt-4 text-center text-xs text-muted-foreground">
-                {t("A look inside Sona 777", "Sona 777 ऐप की एक झलक")}
-              </figcaption>
-            </figure>
+            <div className="relative mx-auto mt-3 w-full max-w-56 md:col-start-2 md:row-span-2 md:row-start-1 md:mt-0 md:max-w-80">
+              <div
+                aria-hidden
+                className="absolute inset-x-0 top-1/4 bottom-0 rounded-full bg-amber-300/25 blur-3xl"
+              />
+              <img
+                src={heroArtwork}
+                alt={t("Sona 777", "Sona 777")}
+                width={376}
+                height={432}
+                fetchPriority="high"
+                className="relative block h-auto w-full drop-shadow-xl"
+              />
+            </div>
+            <div className="mt-4 flex justify-center md:col-start-1 md:row-start-2 md:mt-6 md:self-start md:justify-start">
+              <DownloadBtn placement="hero" big />
+            </div>
           </div>
         </section>
-        <section aria-label={t("Download information", "डाउनलोड की जानकारी")} className="border-b">
-          <div className="mx-auto grid max-w-6xl gap-4 px-4 py-5 text-sm sm:gap-5 sm:px-5 sm:py-7 font-semibold sm:grid-cols-3">
+
+        <div className="border-b border-amber-600/15 bg-[#fffcf5]">
+          <ul className="mx-auto grid max-w-6xl grid-cols-3 gap-2 px-4 py-4 sm:px-5 sm:py-5">
             {[
-              { icon: Smartphone, label: t("For Android phones", "Android फ़ोन के लिए") },
-              {
-                icon: Languages,
-                label: t("English & Hindi instructions", "अंग्रेज़ी और हिन्दी में निर्देश"),
-              },
-              {
-                icon: FileDown,
-                label: t("Step-by-step installation help", "इंस्टॉल करने के चरणों में मदद"),
-              },
+              { icon: Smartphone, label: t("All your markets", "आपके सभी मार्केट") },
+              { icon: Download, label: t("Easy installation", "आसान इंस्टॉलेशन") },
+              { icon: Languages, label: t("English & Hindi", "अंग्रेज़ी और हिन्दी") },
             ].map(({ icon: Icon, label }) => (
-              <div key={label} className="flex items-center justify-start gap-3 sm:justify-center">
-                <Icon aria-hidden className="size-5 text-primary" />
+              <li
+                key={label}
+                className="flex flex-col items-center justify-center gap-2 text-center text-xs font-semibold sm:flex-row sm:gap-3 sm:text-sm"
+              >
+                <Icon aria-hidden className="size-5 shrink-0 text-amber-700" />
                 {label}
-              </div>
+              </li>
             ))}
-          </div>
-        </section>
+          </ul>
+        </div>
+
         <section
           id="installation"
-          className="mx-auto max-w-6xl scroll-mt-24 px-4 py-10 sm:px-5 sm:py-16"
+          aria-labelledby="installation-title"
+          className="mx-auto max-w-6xl scroll-mt-24 px-4 py-8 sm:px-5 sm:py-10"
         >
-          <p className="text-center text-xs font-bold uppercase tracking-widest text-primary">
-            {t("Getting started", "शुरुआत करें")}
-          </p>
-          <h2 className="mt-3 text-center font-display text-2xl sm:text-3xl">
-            {t("Your app, in three simple steps", "तीन आसान चरणों में आपका ऐप")}
-          </h2>
-          <div className="mt-6 grid gap-3 sm:mt-10 sm:gap-5 md:grid-cols-3">
-            {steps.map(({ icon: Icon, title, body }, index) => (
-              <div key={title} className="rounded-xl border bg-card p-5 sm:p-7">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-bold text-primary">0{index + 1}</span>
-                  <Icon aria-hidden className="size-6 text-primary" />
-                </div>
-                <h3 className="mt-3 text-lg font-bold sm:mt-6 sm:text-xl">{title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{body}</p>
-              </div>
-            ))}
-          </div>
-          <div className="mt-7 text-center">
-            <Link
-              to="/download"
-              className="inline-flex min-h-11 items-center justify-center gap-2 text-sm font-semibold text-primary underline underline-offset-4"
-            >
-              {t("View the full installation guide", "इंस्टॉल करने के पूरे निर्देश देखें")}
-              <ArrowRight aria-hidden className="size-4" />
-            </Link>
-          </div>
-        </section>
-        <section className="border-y bg-muted">
-          <div className="mx-auto max-w-3xl px-4 py-10 sm:px-5 sm:py-14">
-            <h2 className="font-display text-2xl sm:text-3xl">
-              {t("Before you download", "डाउनलोड करने से पहले")}
-            </h2>
-            <ul className="mt-6 space-y-4">
-              {[
-                t(
-                  "Use an Android phone. This download is not compatible with iPhone.",
-                  "Android फ़ोन का उपयोग करें। यह डाउनलोड iPhone पर काम नहीं करता।",
-                ),
-                t(
-                  "Have a stable internet connection and enough free storage.",
-                  "स्थिर इंटरनेट कनेक्शन और पर्याप्त खाली स्टोरेज रखें।",
-                ),
-                t(
-                  "Keep Play Protect enabled and review any installation warnings.",
-                  "Play Protect चालू रखें और इंस्टॉल करते समय दिखने वाली चेतावनियाँ पढ़ें।",
-                ),
-              ].map((item) => (
-                <li key={item} className="flex items-start gap-3 text-sm leading-relaxed">
-                  <Check aria-hidden className="mt-0.5 size-5 shrink-0 text-primary" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-        <section className="mx-auto max-w-3xl px-4 py-10 sm:px-5 sm:py-16">
-          <h2 className="font-display text-2xl sm:text-3xl">
-            {t("Download questions", "डाउनलोड से जुड़े सवाल")}
-          </h2>
-          {[
-            [
-              t("How do I download the app?", "ऐप कैसे डाउनलोड करूँ?"),
-              t(
-                "Tap Play Now to open the download page. You’ll find the app download and the installation instructions there.",
-                "डाउनलोड पेज खोलने के लिए अभी खेलें पर टैप करें। वहाँ ऐप डाउनलोड और इंस्टॉल करने के निर्देश मिलेंगे।",
-              ),
-            ],
-            [
-              t("Does it work on iPhone?", "क्या यह iPhone पर चलता है?"),
-              t(
-                "This download is for Android phones. It cannot be installed on iPhone.",
-                "यह डाउनलोड Android फ़ोन के लिए है। इसे iPhone पर इंस्टॉल नहीं कर सकते।",
-              ),
-            ],
-            [
-              t("Where is the downloaded file?", "डाउनलोड की गई फ़ाइल कहाँ है?"),
-              t(
-                "Check Downloads in your browser or open the Downloads folder in your phone’s Files app.",
-                "ब्राउज़र में Downloads देखें या फ़ोन के Files ऐप में Downloads फ़ोल्डर खोलें।",
-              ),
-            ],
-            [
-              t("Need help installing?", "इंस्टॉल करने में मदद चाहिए?"),
-              t(
-                "The download page includes step-by-step instructions and answers to common installation questions in English and Hindi.",
-                "डाउनलोड पेज पर अंग्रेज़ी और हिन्दी में चरण-दर-चरण निर्देश और इंस्टॉल से जुड़े आम सवालों के जवाब हैं।",
-              ),
-            ],
-          ].map(([question, answer]) => (
-            <details key={question} className="border-b py-5">
-              <summary className="cursor-pointer font-semibold">{question}</summary>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{answer}</p>
-            </details>
-          ))}
-        </section>
-        <section className="bg-primary text-primary-foreground">
-          <div className="mx-auto max-w-3xl px-4 py-10 sm:px-5 sm:py-14 text-center">
-            <h2 className="font-display text-2xl sm:text-3xl">
-              {t("Get Sona 777 on your phone", "अपने फ़ोन पर Sona 777 पाएँ")}
-            </h2>
-            <p className="mt-4 opacity-90">
-              {t(
-                "Your Android download and installation guide, together in one place.",
-                "आपका Android डाउनलोड और इंस्टॉल गाइड, एक ही जगह।",
-              )}
-            </p>
-            <div className="mt-6 w-full rounded-lg bg-background p-2 sm:mt-7 sm:inline-block sm:w-auto">
-              <DownloadBtn placement="other" big />
+          <div className="grid gap-6">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-primary">
+                {t("Getting started", "शुरुआत करें")}
+              </p>
+              <h2
+                id="installation-title"
+                className="mt-2 font-display text-2xl tracking-tight sm:text-3xl"
+              >
+                {t("Ready in three steps", "तीन आसान चरणों में तैयार")}
+              </h2>
+              <ol className="mt-5 grid divide-y border-y md:grid-cols-3 md:divide-x md:divide-y-0">
+                {steps.map(({ title, body }, index) => (
+                  <li
+                    key={title}
+                    className="flex items-start gap-3 py-4 md:px-5 md:first:pl-0 md:last:pr-0"
+                  >
+                    <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-muted text-sm font-bold text-primary">
+                      {index + 1}
+                    </span>
+                    <div>
+                      <h3 className="text-base font-bold">{title}</h3>
+                      <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{body}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+              <Link
+                to="/download"
+                className="mt-3 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-primary hover:underline hover:underline-offset-4"
+              >
+                {t("Full installation guide", "इंस्टॉल करने के पूरे निर्देश")}
+                <ArrowRight aria-hidden className="size-4" />
+              </Link>
             </div>
+          </div>
+        </section>
+
+        <div className="border-t">
+          <div className="mx-auto grid max-w-6xl gap-8 px-4 py-8 sm:px-5 sm:py-10 md:grid-cols-[1fr_280px] md:gap-12 lg:grid-cols-[1fr_320px]">
+            <section aria-labelledby="questions-title">
+              <h2 id="questions-title" className="font-display text-xl sm:text-2xl">
+                {t("A little help", "कुछ ज़रूरी जवाब")}
+              </h2>
+              <div className="mt-3 divide-y">
+                {questions.map(({ question, answer }) => (
+                  <details key={question} className="group py-4">
+                    <summary className="cursor-pointer text-sm font-semibold hover:text-primary">
+                      {question}
+                    </summary>
+                    <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted-foreground">
+                      {answer}
+                    </p>
+                  </details>
+                ))}
+              </div>
+            </section>
+            <aside
+              aria-labelledby="requirements-title"
+              className="self-start rounded-xl bg-muted/60 p-5"
+            >
+              <h2 id="requirements-title" className="text-sm font-bold">
+                {t("Before you download", "डाउनलोड करने से पहले")}
+              </h2>
+              <ul className="mt-4 space-y-4">
+                {[
+                  t(
+                    "An Android phone. This app does not work on iPhone.",
+                    "Android फ़ोन। यह ऐप iPhone पर काम नहीं करता।",
+                  ),
+                  t(
+                    "A stable connection and enough free storage.",
+                    "स्थिर इंटरनेट कनेक्शन और पर्याप्त खाली स्टोरेज।",
+                  ),
+                  t(
+                    "Keep Play Protect enabled and review installation warnings.",
+                    "Play Protect चालू रखें और इंस्टॉल करते समय दिखने वाली चेतावनियाँ पढ़ें।",
+                  ),
+                ].map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-2 text-xs leading-relaxed text-muted-foreground"
+                  >
+                    <Check aria-hidden className="mt-0.5 size-4 shrink-0 text-primary" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </aside>
+          </div>
+        </div>
+
+        <section className="border-t bg-muted/60">
+          <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-6 sm:flex-row sm:items-center sm:justify-between sm:px-5">
+            <div>
+              <h2 className="text-lg font-bold">{t("Ready to play?", "खेलने के लिए तैयार?")}</h2>
+              <p className="mt-1 text-sm text-muted-foreground">
+                {t("Get Sona 777 for Android.", "Android के लिए Sona 777 पाएँ।")}
+              </p>
+            </div>
+            <DownloadBtn placement="other" />
           </div>
         </section>
       </main>

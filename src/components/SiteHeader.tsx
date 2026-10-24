@@ -1,9 +1,10 @@
 import { Link, useLocation } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Download, Menu, X } from "lucide-react";
 import { useLanguage } from "@/lib/language";
 import { Button } from "@/components/ui/button";
-import { trackDownload, type Placement } from "@/lib/track";
+import { trackApkDownload, trackDownload, type Placement } from "@/lib/track";
+import { APK_URL } from "@/lib/data";
 import horizontalLogo from "@/assets/sona-horizontal.png";
 
 export function DownloadBtn({
@@ -14,20 +15,37 @@ export function DownloadBtn({
   big?: boolean;
 }) {
   const { t } = useLanguage();
+  const ready = /^https:\/\//.test(APK_URL);
   return (
     <Button
-      asChild
+      asChild={ready}
+      disabled={!ready}
       size={big ? "lg" : "default"}
       className={
         big
-          ? "h-12 w-full px-6 text-base font-bold shadow-none sm:h-14 sm:w-auto sm:px-8"
-          : "h-11 font-bold shadow-none"
+          ? "sona-download h-12 w-full rounded-xl px-6 text-base font-bold sm:h-14 sm:w-auto sm:min-w-64 sm:px-8"
+          : "sona-download h-11 rounded-xl font-bold"
       }
     >
-      <Link to="/download" onClick={() => trackDownload(placement)}>
-        <Download aria-hidden />
-        {t("Play Now", "अभी खेलें")}
-      </Link>
+      {ready ? (
+        <a
+          href={APK_URL}
+          download
+          data-download-placement={placement}
+          onClick={() => {
+            trackDownload(placement);
+            void trackApkDownload().catch(() => undefined);
+          }}
+        >
+          <Download aria-hidden />
+          {t("Download App", "ऐप डाउनलोड करें")}
+        </a>
+      ) : (
+        <>
+          <Download aria-hidden />
+          {t("Download unavailable", "डाउनलोड उपलब्ध नहीं है")}
+        </>
+      )}
     </Button>
   );
 }
@@ -41,7 +59,7 @@ export function SiteHeader() {
   ] as const;
 
   return (
-    <header className="sticky top-0 z-20 border-b border-primary/20 bg-background/95 backdrop-blur-md">
+    <header className="sticky top-0 z-20 border-b border-amber-600/15 bg-background/95 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 py-2 sm:gap-3 sm:py-3">
         <Link
           to="/"
@@ -100,9 +118,6 @@ export function SiteHeader() {
           >
             {open ? <X /> : <Menu />}
           </Button>
-          <div className="hidden md:block">
-            <DownloadBtn />
-          </div>
         </div>
       </div>
       {open && (
@@ -129,7 +144,33 @@ export function SiteHeader() {
 
 export function SiteFooter() {
   const { t } = useLanguage();
-  const onDownloadPage = useLocation().pathname === "/download";
+  const pathname = useLocation().pathname;
+  const [showStickyDownload, setShowStickyDownload] = useState(false);
+
+  useEffect(() => {
+    setShowStickyDownload(false);
+    if (pathname !== "/" || typeof IntersectionObserver === "undefined") return;
+
+    const heroDownload = document.querySelector('[data-download-placement="hero"]');
+    if (!heroDownload) return;
+
+    const visibleDownloads = new Set<Element>();
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) visibleDownloads.add(entry.target);
+        else visibleDownloads.delete(entry.target);
+      }
+
+      setShowStickyDownload(
+        heroDownload.getBoundingClientRect().bottom <= 0 && visibleDownloads.size === 0,
+      );
+    });
+
+    document
+      .querySelectorAll('[data-download-placement]:not([data-download-placement="sticky_mobile"])')
+      .forEach((button) => observer.observe(button));
+    return () => observer.disconnect();
+  }, [pathname]);
   return (
     <>
       <footer className="border-t border-primary/20 bg-muted px-4 py-8 text-center text-sm leading-relaxed text-muted-foreground sm:py-10">
@@ -144,16 +185,14 @@ export function SiteFooter() {
         </p>
         <p className="mt-4 text-xs">© 2026 Sona 777.</p>
       </footer>
-      {!onDownloadPage && (
+      {pathname === "/" && (
         <>
           <div className="h-[calc(5rem+env(safe-area-inset-bottom))] md:hidden" />
-          <div className="fixed inset-x-0 bottom-0 z-30 border-t bg-background px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] md:hidden">
-            <Button asChild className="h-12 w-full font-bold shadow-none">
-              <Link to="/download" onClick={() => trackDownload("sticky_mobile")}>
-                <Download aria-hidden />
-                {t("Play Now", "अभी खेलें")}
-              </Link>
-            </Button>
+          <div
+            hidden={!showStickyDownload}
+            className="fixed inset-x-0 bottom-0 z-30 border-t bg-background px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] md:hidden [&_a]:h-12 [&_a]:w-full"
+          >
+            <DownloadBtn placement="sticky_mobile" big />
           </div>
         </>
       )}

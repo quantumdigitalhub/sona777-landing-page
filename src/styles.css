@@ -58,10 +58,36 @@
 }
 
 @layer base {
-  * { border-color: var(--color-border); }
+  * {
+    border-color: var(--color-border);
+  }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
   }
+}
+
+.sona-hero {
+  background:
+    radial-gradient(ellipse at 70% 60%, #ffe6a8 0%, transparent 55%),
+    linear-gradient(180deg, #fffaf0, #fff3db);
+}
+
+.sona-hero-title {
+  padding-right: 0.1em;
+  background: linear-gradient(180deg, #e8a928 10%, #a85408 95%);
+  background-clip: text;
+  color: transparent;
+}
+
+.sona-download {
+  background: linear-gradient(180deg, #ffd574, #efa622);
+  color: #321c06;
+  border: 1px solid #d38b17;
+  box-shadow: 0 4px 14px #d58b1326;
+}
+
+.sona-download:hover {
+  background: linear-gradient(180deg, #ffdd90, #f3b23b);
 }
