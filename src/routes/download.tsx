@@ -202,8 +202,8 @@ function DownloadPage() {
             <WhatsAppSupport />
             <p className="mt-2 text-sm text-muted-foreground">
               {t(
-                "WhatsApp support will be available once the contact is added.",
-                "संपर्क जुड़ने के बाद WhatsApp सहायता उपलब्ध होगी।",
+                "Contact us on WhatsApp for installation help.",
+                "इंस्टॉल करने में मदद के लिए WhatsApp पर संपर्क करें।",
               )}
             </p>
           </div>
